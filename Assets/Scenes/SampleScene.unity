@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 1316799541380195162, guid: 9b75c5d748b9fa84a84650b153405559, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 109792144}
   spawnInterval: 2
   spawnAreaSize: {x: 13.22, y: 0.02, z: 11.09}
 --- !u!4 &1325112363
