@@ -8,6 +8,7 @@ public class MonsterHealth : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private GameObject lootPrefab;  // Referenz zum Loot-Prefab
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
+    [SerializeField] private float dropChance = 0.5f;  // Chance für das Droppen des Loots
 
     private void Start()
     {
@@ -35,8 +36,12 @@ public class MonsterHealth : MonoBehaviour
     {
         if (lootPrefab != null)
         {
-            Vector3 spawnPosition = lootSpawnPoint != null ? lootSpawnPoint.position : transform.position;
-            Instantiate(lootPrefab, spawnPosition, Quaternion.identity);
+            float randomValue = Random.value;  // Zufälliger Wert zwischen 0 und 1
+            if (randomValue < dropChance)
+            {
+                Vector3 spawnPosition = lootSpawnPoint != null ? lootSpawnPoint.position : transform.position;
+                Instantiate(lootPrefab, spawnPosition, Quaternion.identity);
+            }
         }
     }
 }

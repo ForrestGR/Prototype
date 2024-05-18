@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class MonsterAI : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-    [SerializeField] private float speed = 4f;
-    [SerializeField] private int damage = 10;
-
+    public Transform player;  // Referenz zum Spieler-Transform
+    public float speed = 4f;
+    public int damage = 10;
 
     void Update()
     {
+        if (player == null)
+        {
+            Debug.LogError("Player reference is not assigned in MonsterAI script.");
+            return;
+        }
+
         // Berechne die Richtung zum Spieler
         Vector3 direction = player.position - transform.position;
         direction.Normalize(); // Stelle sicher, dass die Richtung normalisiert ist (Länge 1)
@@ -22,7 +27,6 @@ public class MonsterAI : MonoBehaviour
         transform.LookAt(player);
     }
 
-
     private void OnCollisionEnter(Collision collision)
     {
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
@@ -31,6 +35,4 @@ public class MonsterAI : MonoBehaviour
             playerHealth.TakeDamage(damage);
         }
     }
-
-
 }
