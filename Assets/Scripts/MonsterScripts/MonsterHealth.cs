@@ -8,7 +8,7 @@ public class MonsterHealth : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private GameObject lootPrefab;  // Referenz zum Loot-Prefab
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
-    [SerializeField] private float dropChance = 0.5f;  // Chance für das Droppen des Loots
+    [SerializeField] private float dropChance = 2f;  // Chance für das Droppen des Loots
 
     private void Start()
     {

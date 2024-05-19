@@ -10,6 +10,12 @@ public class MonsterAI : MonoBehaviour
 
     void Update()
     {
+        MoveTowardsPlayer();
+    }
+
+
+    private void MoveTowardsPlayer()
+    {
         if (player == null)
         {
             Debug.LogError("Player reference is not assigned in MonsterAI script.");
@@ -17,8 +23,10 @@ public class MonsterAI : MonoBehaviour
         }
 
         // Berechne die Richtung zum Spieler
-        Vector3 direction = player.position - transform.position;
-        direction.Normalize(); // Stelle sicher, dass die Richtung normalisiert ist (Länge 1)
+        Vector3 direction = (player.position - transform.position).normalized; // Stelle sicher, dass die Richtung normalisiert ist (Länge 1)
+
+        // Nur in der X-Z-Ebene bewegen
+        direction.y = 0;  
 
         // Bewege das Monster in Richtung des Spielers
         transform.position += direction * speed * Time.deltaTime;
@@ -26,6 +34,9 @@ public class MonsterAI : MonoBehaviour
         // Optional: Drehung des Monsters in Richtung des Spielers
         transform.LookAt(player);
     }
+
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -35,4 +46,7 @@ public class MonsterAI : MonoBehaviour
             playerHealth.TakeDamage(damage);
         }
     }
+
+
+
 }
