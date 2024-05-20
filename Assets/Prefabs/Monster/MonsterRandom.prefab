@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.5541096, y: -0.18294096, z: 46.580273}
-  m_LocalScale: {x: 1.5, y: 0.47, z: 2.21}
+  m_LocalScale: {x: 0.85, y: 0.19, z: 0.66}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1791277415381822893}
@@ -52,15 +52,11 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   lootPrefabs:
-  - {fileID: 7869010006552024374, guid: 4e9ed8402d91b1b42b3240be8489d297, type: 3}
   - {fileID: 8058316324324789656, guid: 53ca8c7de995dd74e81fa2ab9c5c88fc, type: 3}
-  - {fileID: 640130318901400508, guid: b872f61c5cc700b4ca457ab94c2e3dea, type: 3}
   lootDropChances:
-  - 0.6
-  - 0.3
-  - 0.1
+  - 0.5
   lootSpawnPoint: {fileID: 1791277415381822893}
-  dropChance: 0.876
+  dropChance: 1
 --- !u!33 &7269511451577068516
 MeshFilter:
   m_ObjectHideFlags: 0
