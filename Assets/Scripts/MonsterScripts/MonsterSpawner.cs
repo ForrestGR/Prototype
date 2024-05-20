@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public GameObject monsterPrefab;  // Referenz zum Monster-Prefab
+    public GameObject[] monsterPrefabs;  // Array von verschiedenen Monster-Prefabs
     public Transform player;  // Referenz zum Spieler-Objekt
     public float spawnInterval = 2f;  // Intervallzeit in Sekunden
     public Vector3 spawnAreaSize = new Vector3(10, 0, 10);  // Größe des Spawnbereichs
@@ -25,6 +25,10 @@ public class MonsterSpawner : MonoBehaviour
 
     private void SpawnMonster()
     {
+        // Wähle ein zufälliges Monster-Prefab aus dem Array
+        int randomIndex = Random.Range(0, monsterPrefabs.Length);
+        GameObject monsterPrefab = monsterPrefabs[randomIndex];
+
         Vector3 spawnPosition = GetRandomSpawnPosition();
         GameObject newMonster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;  // Geschwindigkeit des Projektils
-    [SerializeField] private int damage = 40;    // Schaden, den das Projektil zufügt
+    [SerializeField] private int damage = 50;    // Schaden, den das Projektil zufügt
 
     void Start()
     {
@@ -16,8 +16,8 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Hier prüfen, ob das getroffene Objekt ein Monster ist
-        MonsterHealth monsterHealth = other.GetComponent<MonsterHealth>();
+        // Hier prüfen, ob das getroffene Objekt ein Monster ist, IMonsterHealth
+        IMonsterHealth monsterHealth = other.GetComponent<IMonsterHealth>();
 
         if (monsterHealth != null)
         {

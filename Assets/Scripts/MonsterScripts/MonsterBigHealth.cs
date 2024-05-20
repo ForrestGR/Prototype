@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterHealth : MonoBehaviour, IMonsterHealth
+public class MonsterBigHealth : MonoBehaviour, IMonsterHealth
 {
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 200;
     [SerializeField] private int currentHealth;
     [SerializeField] private GameObject lootPrefab;  // Referenz zum Loot-Prefab
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
     [SerializeField] private float dropChance = 2f;  // Chance für das Droppen des Loots
 
+
     private void Start()
     {
         currentHealth = maxHealth;
     }
+
 
     // Funktion, um Schaden zu nehmen
     public void TakeDamage(int damage)
@@ -31,6 +33,7 @@ public class MonsterHealth : MonoBehaviour, IMonsterHealth
         DropLoot();  // Rufe die DropLoot-Methode auf
         Destroy(gameObject);  // Zerstöre das Monster-GameObject
     }
+
 
     private void DropLoot()
     {
