@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+
+
 public class Loot : MonoBehaviour
 {
     public enum LootType
@@ -28,11 +31,7 @@ public class Loot : MonoBehaviour
         }
     }
 
-    public void SetLoot(LootType type, int lootValue)
-    {
-        lootType = type;
-        value = lootValue;
-    }
+
 }
 
 
