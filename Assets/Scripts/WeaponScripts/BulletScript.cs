@@ -14,23 +14,6 @@ public class Bullet : MonoBehaviour
     }
 
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    // Versuche die MonsterHealth Komponente vom kollidierenden Objekt zu bekommen
-    //    MonsterHealth monsterHealth = collision.gameObject.GetComponent<MonsterHealth>();
-
-    //    if (monsterHealth != null)
-    //    {
-    //        // Füge Schaden zu
-    //        monsterHealth.TakeDamage(damage);
-    //    }
-
-    //    // Zerstöre Kugel nach Kollision
-    //    Destroy(gameObject);
-    //}
-
-
-
     void OnTriggerEnter(Collider other)
     {
         // Hier prüfen, ob das getroffene Objekt ein Monster ist

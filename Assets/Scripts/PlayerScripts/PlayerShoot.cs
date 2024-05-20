@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Das Prefab der Bullet
-    public Transform firePoint; // Der Punkt, von dem die Bullet abgefeuert wird
+    [SerializeField] private GameObject bulletPrefab; // Das Prefab der Bullet
+    [SerializeField] private Transform firePoint; // Der Punkt, von dem die Bullet abgefeuert wird
+
+    private PlayerController playerController;
+
+    void Start()
+    {
+        // Referenz zum PlayerController abrufen
+        playerController = GetComponent<PlayerController>();
+    }
+
+
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Linke Maustaste
+        if (playerController.currentWeapon != null && Input.GetMouseButtonDown(0)) // Linke Maustaste
         {
             Shoot();
         }
