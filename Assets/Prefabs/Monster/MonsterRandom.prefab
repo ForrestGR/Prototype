@@ -52,9 +52,13 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   lootPrefabs:
-  - {fileID: 8058316324324789656, guid: 53ca8c7de995dd74e81fa2ab9c5c88fc, type: 3}
+  - {fileID: 7869010006552024374, guid: 4e9ed8402d91b1b42b3240be8489d297, type: 3}
+  - {fileID: 5138401847025255922, guid: 4f226fd9fc324af41bf18706a001c724, type: 3}
+  - {fileID: 640130318901400508, guid: b872f61c5cc700b4ca457ab94c2e3dea, type: 3}
   lootDropChances:
-  - 0.5
+  - 0.6
+  - 0.3
+  - 0.1
   lootSpawnPoint: {fileID: 1791277415381822893}
   dropChance: 1
 --- !u!33 &7269511451577068516
