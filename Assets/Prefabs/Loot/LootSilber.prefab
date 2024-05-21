@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4517593818076015829}
   - component: {fileID: 2120680738473281578}
   - component: {fileID: 6992147727114489087}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LootSilber
   m_TagString: Untagged
   m_Icon: {fileID: 0}

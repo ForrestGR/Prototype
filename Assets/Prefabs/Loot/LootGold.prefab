@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2967346057972160942}
   - component: {fileID: 4220565102567448024}
   - component: {fileID: 3570073999171897237}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LootGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}

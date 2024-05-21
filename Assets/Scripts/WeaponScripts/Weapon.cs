@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Das Prefab der Kugel
-    public Transform firePoint; // Der Punkt, von dem die Kugel abgefeuert wird
-    public float bulletForce = 20f; // Die Geschwindigkeit der Kugel
-    public int damage = 50; // Der Schaden der Waffe
+    [SerializeField] protected GameObject bulletPrefab; // Das Prefab der Kugel
+    [SerializeField] protected Transform firePoint; // Der Punkt, von dem die Kugel abgefeuert wird
+    [SerializeField] protected float bulletForce = 20f; // Die Geschwindigkeit der Kugel
+    [SerializeField] protected int damage = 50; // Der Schaden der Waffe
 
     public virtual void Shoot()
     {
@@ -29,3 +29,4 @@ public class Weapon : MonoBehaviour
         }
     }
 }
+

@@ -10,6 +10,7 @@ public class MonsterRandomHealth : MonoBehaviour, IMonsterHealth
     [SerializeField] private List<float> lootDropChances;  // Liste der Wahrscheinlichkeiten für jedes Loot-Prefab
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
     [SerializeField][Range(0f, 1f)] private float dropChance = 0.2f;  // Generelle Drop-Chance (0 bis 1)
+    private bool isDead = false;  // Variable, um zu überprüfen, ob das Monster bereits tot ist
 
     private void Start()
     {
@@ -19,6 +20,8 @@ public class MonsterRandomHealth : MonoBehaviour, IMonsterHealth
     // Funktion, um Schaden zu nehmen
     public void TakeDamage(int damage)
     {
+        if (isDead) return;  // Wenn das Monster bereits tot ist, führe nichts weiter aus
+
         currentHealth -= damage;
 
         if (currentHealth <= 0)
@@ -29,6 +32,9 @@ public class MonsterRandomHealth : MonoBehaviour, IMonsterHealth
 
     private void Die()
     {
+        if (isDead) return;  // Doppelte Überprüfung, um sicherzustellen, dass Die nur einmal aufgerufen wird
+
+        isDead = true;  // Setze isDead auf true, um anzuzeigen, dass das Monster tot ist
         DropLoot();  // Rufe die DropLoot-Methode auf
         Destroy(gameObject);  // Zerstöre das Monster-GameObject
     }

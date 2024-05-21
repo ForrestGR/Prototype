@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.5541096, y: -0.18294096, z: 46.580273}
-  m_LocalScale: {x: 0.85, y: 0.19, z: 0.66}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.45, y: 0.32411763, z: 1.1258824}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1791277415381822893}
   m_Father: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490056dd5216a3d4485448bce49c02c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 150
   currentHealth: 0
   lootPrefabs:
   - {fileID: 7869010006552024374, guid: 4e9ed8402d91b1b42b3240be8489d297, type: 3}

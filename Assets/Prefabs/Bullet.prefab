@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1027957609731432814}
   - component: {fileID: 2898657508220285926}
   - component: {fileID: 7995712490608545982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 50
   lifetime: 2
 --- !u!33 &164593205273386570
 MeshFilter:

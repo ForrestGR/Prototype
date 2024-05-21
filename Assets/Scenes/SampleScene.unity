@@ -1708,6 +1708,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b75c5d748b9fa84a84650b153405559, type: 3}
+--- !u!1001 &8782534072050263818
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.139
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.488
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623245270811716189, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5902177294026317206, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
+      propertyPath: m_Name
+      value: PumpGun
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9be675f8d30539f4faf4e206e5b1cf4f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1724,3 +1781,4 @@ SceneRoots:
   - {fileID: 573867753}
   - {fileID: 367956132}
   - {fileID: 317728775}
+  - {fileID: 8782534072050263818}

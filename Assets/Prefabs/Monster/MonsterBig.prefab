@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d81d460597ab941ac312d5eea9782e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 300
   currentHealth: 0
   lootPrefab: {fileID: 640130318901400508, guid: b872f61c5cc700b4ca457ab94c2e3dea, type: 3}
   lootSpawnPoint: {fileID: 0}

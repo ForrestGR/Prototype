@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5442817889080118441}
   - component: {fileID: 6947977561105665081}
   - component: {fileID: 1027963470972378117}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LootBronze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
