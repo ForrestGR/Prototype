@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Transform weaponHolder;  // Ein leeres GameObject an der Position, wo die Waffe am Spieler befestigt werden soll
-
-    public GameObject currentWeapon;  // Die aktuell ausgerüstete Waffe
+    public Weapon currentWeapon;  // Die aktuell ausgerüstete Waffe
 
     void Update()
     {
@@ -15,20 +14,25 @@ public class PlayerController : MonoBehaviour
         {
             DropWeapon();
         }
-    }
 
+        // Überprüfen, ob die linke Maustaste gedrückt wird, um zu schießen
+        if (Input.GetMouseButton(0) && currentWeapon != null)
+        {
+            currentWeapon.Shoot();
+        }
+    }
 
     public void EquipWeapon(GameObject weapon)
     {
         // Überprüfen, ob der Spieler bereits eine Waffe hält und ob die neue Waffe dieselbe ist
-        if (currentWeapon != null && currentWeapon != weapon)
+        if (currentWeapon != null && currentWeapon.gameObject != weapon)
         {
             // Optional: Die bisherige Waffe deaktivieren oder verstecken, anstatt sie zu zerstören
-            currentWeapon.SetActive(false);
+            currentWeapon.gameObject.SetActive(false);
         }
 
         // Setze die neue Waffe als die aktuelle Waffe
-        currentWeapon = weapon;
+        currentWeapon = weapon.GetComponent<Weapon>();
 
         // Setze die neue Waffe als Kind des weaponHolder-Transforms
         currentWeapon.transform.SetParent(weaponHolder);
@@ -36,14 +40,14 @@ public class PlayerController : MonoBehaviour
         // Setze die lokale Position der Waffe auf den Ursprung (relativ zum weaponHolder)
         currentWeapon.transform.localPosition = Vector3.zero;
 
-        // Drehe die Waffe um 90 Grad auf der X-Achse (relativ zum weaponHolder)
-        currentWeapon.transform.localRotation = Quaternion.Euler(90, 0, 0);
+        // Drehe die Waffe um die X-Achse um 90 Grad, falls notwendig
+        currentWeapon.transform.localRotation = Quaternion.Euler(90, 0, 0); // Setze Rotation auf Null oder auf eine bestimmte Rotation, wenn nötig
 
         // Deaktiviere den Collider der Waffe, um physikalische Kollisionen zu vermeiden
         currentWeapon.GetComponent<Collider>().enabled = false;
 
         // Optional: Die neue Waffe aktivieren, falls sie deaktiviert war
-        currentWeapon.SetActive(true);
+        currentWeapon.gameObject.SetActive(true);
     }
 
     public void DropWeapon()
@@ -59,16 +63,8 @@ public class PlayerController : MonoBehaviour
             // Aktiviere den Collider der Waffe wieder
             currentWeapon.GetComponent<Collider>().enabled = true;
 
-            //// Optional: Ein Rigidbody hinzufügen, um die Waffe physikalisch fallen zu lassen
-            //Rigidbody rb = currentWeapon.GetComponent<Rigidbody>();
-            //if (rb == null)
-            //{
-            //    rb = currentWeapon.AddComponent<Rigidbody>();
-            //}
-
             // Setze currentWeapon auf null, da die Waffe jetzt fallen gelassen wurde
             currentWeapon = null;
         }
     }
-
 }

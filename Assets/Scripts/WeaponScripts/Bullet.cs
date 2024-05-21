@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private int damage;
     [SerializeField] private float speed = 20f;  // Geschwindigkeit des Projektils
-    [SerializeField] private int damage = 50;    // Schaden, den das Projektil zufügt
+    [SerializeField] private float lifetime = 2f; // Lebensdauer der Kugel
+
+    private Rigidbody rb;
 
     void Start()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * speed;
+        rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = transform.forward * speed;
+        }
+        Destroy(gameObject, lifetime);
     }
 
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -22,8 +33,8 @@ public class Bullet : MonoBehaviour
         if (monsterHealth != null)
         {
             monsterHealth.TakeDamage(damage);  // Beispiel-Schaden
-            Destroy(gameObject);  // Zerstört die Kugel nach der Kollision
         }
-    }
 
+        Destroy(gameObject);  // Zerstört die Kugel nach der Kollision
+    }
 }

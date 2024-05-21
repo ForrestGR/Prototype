@@ -6,8 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f; // Bewegungsgeschwindigkeit des Spielers
 
-
-
     void Update()
     {
         // Initialisiere die Bewegungsrichtung als Vektor
@@ -34,7 +32,14 @@ public class PlayerMovement : MonoBehaviour
         // Normiere den Bewegungsvektor, um gleichmäßige Bewegung zu gewährleisten
         moveDirection.Normalize();
 
+        // Überprüfe, ob die Umschalttaste gedrückt ist, und verdopple die Geschwindigkeit
+        float currentSpeed = speed;
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            currentSpeed *= 2f;
+        }
+
         // Bewege den Spieler basierend auf der Bewegungsrichtung und der Geschwindigkeit
-        transform.position += moveDirection * speed * Time.deltaTime;
+        transform.position += moveDirection * currentSpeed * Time.deltaTime;
     }
 }
