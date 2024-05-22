@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 109792146}
   - component: {fileID: 109792148}
   - component: {fileID: 109792149}
+  - component: {fileID: 109792150}
   - component: {fileID: 109792141}
   - component: {fileID: 109792140}
   m_Layer: 0
@@ -315,6 +316,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponHolder: {fileID: 1568810064}
   currentWeapon: {fileID: 0}
+--- !u!114 &109792150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109792139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f806c7a079b404f4cab350f6b744e6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &243106216
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,11 +917,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1253603236}
+  - component: {fileID: 1253603237}
   - component: {fileID: 1253603235}
   - component: {fileID: 1253603234}
   - component: {fileID: 1253603233}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: WeaponStore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -929,7 +943,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1002,6 +1016,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1253603237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253603232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96460df95b40c9145b14651d662d4fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ak47Prefab: {fileID: 5581399600545190263, guid: d07a8c32dbed5274198286f529e0e50b, type: 3}
+  weaponHoldPoint: {fileID: 1568810064}
 --- !u!1 &1325112361
 GameObject:
   m_ObjectHideFlags: 0
