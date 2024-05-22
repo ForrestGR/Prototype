@@ -27,34 +27,27 @@ public class PlayerInventory : MonoBehaviour
                 // Fügen Sie hier weitere Fälle für andere Loot-Typen hinzu
         }
     }
+
+    public bool HasEnoughGold(int amount)
+    {
+        return goldCount >= amount;
+    }
+
+    public void SpendGold(int amount)
+    {
+        if (HasEnoughGold(amount))
+        {
+            goldCount -= amount;
+            Debug.Log("Gold ausgegeben! Verbleibendes Gold: " + goldCount);
+        }
+        else
+        {
+            Debug.LogWarning("Nicht genug Gold!");
+        }
+    }
+
+
+
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//public class PlayerInventory : MonoBehaviour
-//{
-//    private int goldCount = 0;
-
-//    public void PickupLoot(int gold)
-//    {
-//        goldCount += gold;
-//        Debug.Log("Gold aufgenommen! Gesamtes Gold: " + goldCount);
-//    }
-//}

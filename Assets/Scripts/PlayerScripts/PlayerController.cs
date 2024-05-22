@@ -37,10 +37,7 @@ public class PlayerController : MonoBehaviour
         // Setze die neue Waffe als Kind des weaponHolder-Transforms
         currentWeapon.transform.SetParent(weaponHolder);
 
-        // Setze die lokale Position der Waffe auf den Ursprung (relativ zum weaponHolder)
         currentWeapon.transform.localPosition = Vector3.zero;
-
-        // Drehe die Waffe um die X-Achse um 90 Grad, falls notwendig
         currentWeapon.transform.localRotation = Quaternion.Euler(90, 0, 0); // Setze Rotation auf Null oder auf eine bestimmte Rotation, wenn nötig
 
         // Deaktiviere den Collider der Waffe, um physikalische Kollisionen zu vermeiden

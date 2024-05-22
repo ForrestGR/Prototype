@@ -35,8 +35,6 @@ public class Shotgun : Weapon
                 float angleOffset = Random.Range(-spreadAngle / 2, spreadAngle / 2);
                 Vector3 spreadDirection = Quaternion.Euler(0, angleOffset, 0) * firePoint.forward;
 
-                Debug.Log($"Pellet Direction: {spreadDirection}, Force: {bulletForce}");
-
                 rb.AddForce(spreadDirection * bulletForce, ForceMode.Impulse);
             }
 
