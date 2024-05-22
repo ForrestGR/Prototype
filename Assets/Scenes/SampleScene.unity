@@ -1030,6 +1030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ak47Prefab: {fileID: 5581399600545190263, guid: d07a8c32dbed5274198286f529e0e50b, type: 3}
   weaponHoldPoint: {fileID: 1568810064}
+  weaponCost: 400
 --- !u!1 &1325112361
 GameObject:
   m_ObjectHideFlags: 0

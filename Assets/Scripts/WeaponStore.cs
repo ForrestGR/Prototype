@@ -6,6 +6,7 @@ public class WeaponStore : MonoBehaviour
 {
     [SerializeField] private GameObject ak47Prefab; // Das Prefab der AK47
     [SerializeField] private Transform weaponHoldPoint; // Der Punkt, an dem die Waffe in der Hand des Spielers gehalten wird
+    [SerializeField] private int weaponCost = 600;
 
     private bool isPlayerInRange = false; // Überprüft, ob der Spieler in der Nähe ist
 
@@ -64,7 +65,6 @@ public class WeaponStore : MonoBehaviour
             PlayerInventory playerInventory = playerController.GetComponent<PlayerInventory>();
             if (playerInventory != null)
             {
-                int weaponCost = 600; // Kosten der AK47
 
                 // Überprüfe, ob der Spieler genug Gold hat
                 if (playerInventory.HasEnoughGold(weaponCost))
