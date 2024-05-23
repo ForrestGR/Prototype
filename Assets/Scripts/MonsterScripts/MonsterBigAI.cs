@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterBigAI : MonoBehaviour
+public class MonsterBigAI : BaseMonsterAI
 {
-    // Start is called before the first frame update
-    void Start()
+    // Spezifische Logik für MonsterBigAI kann hier hinzugefügt werden
+
+    protected override void MoveTowardsPlayer()
     {
-        
+        base.MoveTowardsPlayer();
+        // Füge hier zusätzliche Logik hinzu, falls nötig
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnCollisionEnter(Collision collision)
     {
-        
+        base.OnCollisionEnter(collision);
+        // Füge hier zusätzliche Logik hinzu, falls nötig
     }
 }

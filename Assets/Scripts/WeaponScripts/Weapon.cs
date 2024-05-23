@@ -26,7 +26,13 @@ public class Weapon : MonoBehaviour
             {
                 bulletScript.SetDamage(damage);
             }
+
+            // Setze den Schaden der MonsterKugel
+            BulletMonster bulletMonster = bullet.GetComponent<BulletMonster>();
+            if (bulletMonster != null)
+            {
+                bulletMonster.SetDamage(damage);
+            }
         }
     }
 }
-

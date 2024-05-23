@@ -2,51 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterAI : MonoBehaviour
+public class MonsterAI : BaseMonsterAI
 {
-    public Transform player;  // Referenz zum Spieler-Transform
-    public float speed = 4f;
-    public int damage = 10;
+    // Spezifische Logik für MonsterAI kann hier hinzugefügt werden
 
-    void Update()
+    protected override void MoveTowardsPlayer()
     {
-        MoveTowardsPlayer();
+        base.MoveTowardsPlayer();
+        // Füge hier zusätzliche Logik hinzu, falls nötig
     }
 
-
-    private void MoveTowardsPlayer()
+    protected override void OnCollisionEnter(Collision collision)
     {
-        if (player == null)
-        {
-            Debug.LogError("Player reference is not assigned in MonsterAI script.");
-            return;
-        }
-
-        // Berechne die Richtung zum Spieler
-        Vector3 direction = (player.position - transform.position).normalized; // Stelle sicher, dass die Richtung normalisiert ist (Länge 1)
-
-        // Nur in der X-Z-Ebene bewegen
-        direction.y = 0;  
-
-        // Bewege das Monster in Richtung des Spielers
-        transform.position += direction * speed * Time.deltaTime;
-
-        // Optional: Drehung des Monsters in Richtung des Spielers
-        transform.LookAt(player);
+        base.OnCollisionEnter(collision);
+        // Füge hier zusätzliche Logik hinzu, falls nötig
     }
-
-
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
-        {
-            playerHealth.TakeDamage(damage);
-        }
-    }
-
-
-
 }

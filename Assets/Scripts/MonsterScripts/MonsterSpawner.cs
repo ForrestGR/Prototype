@@ -33,10 +33,14 @@ public class MonsterSpawner : MonoBehaviour
         GameObject newMonster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
 
         // Setze die Spieler-Referenz des neu gespawnten Monsters
-        MonsterAI monsterScript = newMonster.GetComponent<MonsterAI>();
+        BaseMonsterAI monsterScript = newMonster.GetComponent<BaseMonsterAI>();
         if (monsterScript != null)
         {
             monsterScript.player = player;
+        }
+        else
+        {
+            Debug.LogError("The spawned monster does not have a BaseMonsterAI component.");
         }
     }
 
