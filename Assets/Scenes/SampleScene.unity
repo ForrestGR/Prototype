@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 109792148}
   - component: {fileID: 109792149}
   - component: {fileID: 109792150}
+  - component: {fileID: 109792151}
   - component: {fileID: 109792141}
   - component: {fileID: 109792140}
   m_Layer: 0
@@ -328,6 +329,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f806c7a079b404f4cab350f6b744e6c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &109792151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109792139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344f92de332d8294287badf799ad9c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  rotationSpeed: 5
 --- !u!1 &243106216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1080,7 @@ MonoBehaviour:
   - {fileID: 1567738944397811962, guid: efa4b12964a59b24fa5271222e028f27, type: 3}
   - {fileID: 305181534415252514, guid: 8c9a2a677bd03dc4092927b68a3224a7, type: 3}
   player: {fileID: 109792144}
-  spawnInterval: 2
+  spawnInterval: 4
   spawnAreaSize: {x: 13.22, y: 0.02, z: 11.09}
 --- !u!4 &1325112363
 Transform:
