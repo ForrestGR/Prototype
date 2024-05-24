@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 109792143}
   - component: {fileID: 109792142}
   - component: {fileID: 109792145}
+  - component: {fileID: 109792152}
   - component: {fileID: 109792146}
   - component: {fileID: 109792148}
   - component: {fileID: 109792149}
@@ -276,8 +277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23338bf4142fb25489cb0cab81b7e715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4719
+  maxHealth: 1000
   currentHealth: 0
+  currentLevel: 1
+  currentXP: 0
+  xpToNextLevel: 100
 --- !u!114 &109792146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +347,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   rotationSpeed: 5
+--- !u!114 &109792152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109792139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aacb4a2cfebede4d95d27fb3fd03a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &243106216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,6 +1716,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3953984963438810513, guid: 9b75c5d748b9fa84a84650b153405559, type: 3}
       propertyPath: dropChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953984963438810513, guid: 9b75c5d748b9fa84a84650b153405559, type: 3}
+      propertyPath: dropChanceHealth
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4950023438556497599, guid: 9b75c5d748b9fa84a84650b153405559, type: 3}

@@ -8,6 +8,13 @@ public class PlayerInventory : MonoBehaviour
     private int silverCount = 0;
     private int bronzeCount = 0;
 
+    private PlayerHealth playerHealth;
+
+    private void Start()
+    {
+        playerHealth = GetComponent<PlayerHealth>();
+    }
+
     public void PickupLoot(Loot.LootType lootType, int value)
     {
         switch (lootType)
@@ -27,6 +34,23 @@ public class PlayerInventory : MonoBehaviour
                 // Fügen Sie hier weitere Fälle für andere Loot-Typen hinzu
         }
     }
+
+
+    public void PickupItem(Item.ItemType itemType, int value)
+    {
+        switch (itemType)
+        {
+            case Item.ItemType.HealthPotion:
+                playerHealth.Heal(value);
+                break;
+            case Item.ItemType.ManaPotion:
+                // Implementiere Logik für Mana-Wiederherstellung
+                break;
+                // Fügen Sie hier weitere Fälle für andere Item-Typen hinzu
+        }
+    }
+
+
 
     public bool HasEnoughGold(int amount)
     {

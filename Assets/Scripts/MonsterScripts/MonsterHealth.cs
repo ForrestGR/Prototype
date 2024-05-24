@@ -10,6 +10,9 @@ public class MonsterHealth : MonoBehaviour, IMonsterHealth
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
     [SerializeField][Range(0f, 1f)] private float dropChance = 0.2f;  // Chance für das Droppen des Loots (0 bis 1)
     private bool isDead = false;  // Variable, um zu überprüfen, ob das Monster bereits tot ist
+    [SerializeField] private int xpValue = 50; // XP-Wert, den das Monster beim Tod gibt
+    [SerializeField] private GameObject itemPrefab; // Prefab des Items, das fallen gelassen wird
+    [SerializeField] private float dropChanceHealth = 0.5f; // Wahrscheinlichkeit, dass ein Item fallen gelassen wird
 
     private void Start()
     {
@@ -35,7 +38,24 @@ public class MonsterHealth : MonoBehaviour, IMonsterHealth
 
         isDead = true;  // Setze isDead auf true, um anzuzeigen, dass das Monster tot ist
         DropLoot();  // Rufe die DropLoot-Methode auf
+
+        //XP für den Spieler, wenn Monster stirbt
+        PlayerHealth player = FindObjectOfType<PlayerHealth>();
+        if (player != null)
+        {
+            player.GainXP(xpValue);
+        }
+
         Destroy(gameObject);  // Zerstöre das Monster-GameObject
+    }
+
+
+    void DropItem()
+    {
+        if (Random.value < dropChanceHealth)
+        {
+            Instantiate(itemPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     private void DropLoot()
@@ -43,7 +63,7 @@ public class MonsterHealth : MonoBehaviour, IMonsterHealth
         if (lootPrefab != null)
         {
             float randomValue = Random.value;  // Zufälliger Wert zwischen 0 und 1
-            if (randomValue < dropChance)
+            if (randomValue < dropChanceHealth)
             {
                 Vector3 spawnPosition = lootSpawnPoint != null ? lootSpawnPoint.position : transform.position;
                 Instantiate(lootPrefab, spawnPosition, Quaternion.identity);
