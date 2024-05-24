@@ -10,6 +10,7 @@ public class MonsterBigHealth : MonoBehaviour, IMonsterHealth
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
     [SerializeField] private float dropChance = 2f;  // Chance für das Droppen des Loots
     private bool isDead = false;  // Variable, um zu überprüfen, ob das Monster bereits tot ist
+    [SerializeField] private int xpValue = 50; // XP-Wert, den das Monster beim Tod gibt
 
 
     private void Start()
@@ -37,6 +38,14 @@ public class MonsterBigHealth : MonoBehaviour, IMonsterHealth
 
         isDead = true;  // Setze isDead auf true, um anzuzeigen, dass das Monster tot ist
         DropLoot();  // Rufe die DropLoot-Methode auf
+
+        //XP für den Spieler, wenn Monster stirbt
+        PlayerHealth player = FindObjectOfType<PlayerHealth>();
+        if (player != null)
+        {
+            player.GainXP(xpValue);
+        }
+
         Destroy(gameObject);  // Zerstöre das Monster-GameObject
     }
 

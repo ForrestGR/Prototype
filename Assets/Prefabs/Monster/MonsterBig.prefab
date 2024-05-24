@@ -55,6 +55,7 @@ MonoBehaviour:
   lootPrefab: {fileID: 640130318901400508, guid: b872f61c5cc700b4ca457ab94c2e3dea, type: 3}
   lootSpawnPoint: {fileID: 6690107382337052671}
   dropChance: 2
+  xpValue: 150
 --- !u!114 &-8642501681315247946
 MonoBehaviour:
   m_ObjectHideFlags: 0
