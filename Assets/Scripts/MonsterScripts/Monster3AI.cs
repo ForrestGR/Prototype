@@ -77,7 +77,6 @@ public class Monster3AI : BaseMonsterAI
     private void ShootAtPlayer()
     {
         // Implementiere die Schusslogik hier, z.B. Projektil erzeugen und in Richtung des Spielers schießen
-        Debug.Log("Monster is shooting at the player.");
         // Hier könntest du eine Methode in deinem Waffenskript aufrufen, um zu schießen
         Weapon weapon = weaponHoldPoint.GetComponentInChildren<Weapon>();
         if (weapon != null)
