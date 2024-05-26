@@ -2,9 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f; // Bewegungsgeschwindigkeit des Spielers
+    public float jumpForce = 5f; // Sprungkraft des Spielers
+    public float groundCheckDistance = 0.1f; // Distanz zur Überprüfung, ob der Spieler den Boden berührt
+    public LayerMask groundLayer; // LayerMask zur Bestimmung, welche Layer als Boden gelten
+
+    private Rigidbody rb;
+    private bool isGrounded;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -41,5 +53,29 @@ public class PlayerMovement : MonoBehaviour
 
         // Bewege den Spieler basierend auf der Bewegungsrichtung und der Geschwindigkeit
         transform.position += moveDirection * currentSpeed * Time.deltaTime;
+
+        // Überprüfe, ob die Sprungtaste gedrückt ist und der Spieler am Boden ist, und springe dann
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false; // Spieler ist in der Luft
+        }
+
+        // Überprüfe, ob der Spieler den Boden berührt
+        CheckGrounded();
+    }
+
+    private void CheckGrounded()
+    {
+        // Bodenprüfung mit einem Raycast nach unten
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, groundCheckDistance, groundLayer))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 }
