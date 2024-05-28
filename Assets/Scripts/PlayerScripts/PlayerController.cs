@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour
         {
             currentWeapon.Shoot();
         }
+
+        // Überprüfen, ob die Taste "R" gedrückt wird, um nachzuladen
+        if (Input.GetKeyDown(KeyCode.R) && currentWeapon != null && !currentWeapon.IsReloading() && currentWeapon.CurrentAmmo < currentWeapon.MagazineCapacity)
+        {
+            StartCoroutine(currentWeapon.Reload());
+        }
     }
 
     public void EquipWeapon(GameObject weapon)

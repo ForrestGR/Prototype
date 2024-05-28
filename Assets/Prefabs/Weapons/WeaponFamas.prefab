@@ -65,6 +65,10 @@ MonoBehaviour:
   firePoint: {fileID: 3809490007502538297}
   bulletForce: 20
   damage: 30
+  magazineCapacity: 50
+  reloadTime: 0.72
+  totalAmmo: 120
+  currentAmmo: 0
   fireRate: 0.04
 --- !u!33 &7949166384139681028
 MeshFilter:

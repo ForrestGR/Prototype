@@ -51,7 +51,13 @@ MonoBehaviour:
   bulletPrefab: {fileID: 622945679620899339, guid: 30abfb8c744a0694b90bb8a9c23f422e, type: 3}
   firePoint: {fileID: 4655909348273677999}
   bulletForce: 20
-  damage: 200
+  damage: 50
+  fireRate: 0.1
+  magazineCapacity: 30
+  reloadTime: 2
+  totalAmmo: 180
+  currentAmmo: 0
+  fireRate: 0.1
 --- !u!33 &6075911582406097291
 MeshFilter:
   m_ObjectHideFlags: 0

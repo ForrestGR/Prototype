@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class WeaponMonster : Weapon
 {
-    [SerializeField] private float fireRate = 0.1f; //Feuerrate in Sekunden zwischen den Schüssen
-    private float nextTimeToFire = 0f;
+    //[SerializeField] private float fireRate = 0.1f; //Feuerrate in Sekunden zwischen den Schüssen
+    //private float nextTimeToFire = 0f;
 
-    public override void Shoot()
-    {
-        if (Time.time >= nextTimeToFire)
-        {
-            nextTimeToFire = Time.time + fireRate;
-            base.Shoot();
-        }
-    }
+    //public override void Shoot()
+    //{
+    //    if (Time.time >= nextTimeToFire)
+    //    {
+    //        nextTimeToFire = Time.time + fireRate;
+    //        base.Shoot();
+    //    }
+    //}
 }

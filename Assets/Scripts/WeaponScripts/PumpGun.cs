@@ -6,8 +6,6 @@ public class Shotgun : Weapon
 {
     [SerializeField] private int pelletsPerShot = 10; // Anzahl der Kugeln pro Schuss
     [SerializeField] private float spreadAngle = 10f; // Streuwinkel in Grad
-    [SerializeField] private float fireRate = 0.8f; // Feuerrate in Sekunden zwischen den Schüssen
-    private float nextTimeToFire = 0f;
 
     public override void Shoot()
     {
@@ -25,6 +23,7 @@ public class Shotgun : Weapon
 
     private void ShootPellet()
     {
+       
         if (bulletPrefab != null && firePoint != null)
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);

@@ -6,40 +6,39 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] protected GameObject bulletPrefab; 
     [SerializeField] protected Transform firePoint; 
-    [SerializeField] protected float bulletForce = 20f; 
-    [SerializeField] protected int damage = 50; 
-    [SerializeField] protected int maxAmmo = 10;
-    [SerializeField] protected float reloadTime = 2f; 
+    [SerializeField] protected float bulletForce; 
+    [SerializeField] protected int damage; 
+    [SerializeField] protected float fireRate;
+    [SerializeField] protected int totalAmmo; 
+    [SerializeField] protected int magazineCapacity;
+    [SerializeField] protected int currentAmmo; 
+    [SerializeField] protected float reloadTime; 
 
-    [SerializeField] protected int currentAmmo; // Aktuelle Anzahl der Kugeln in der Waffe
     protected bool isReloading = false; // Gibt an, ob die Waffe gerade nachlädt
+    protected float nextTimeToFire = 0f;
 
-   
     protected virtual void Start()
     {
-        currentAmmo = maxAmmo;  
+        currentAmmo = magazineCapacity; // Setzt die aktuelle Munition im Magazin auf die maximale Munition zu Beginn
     }
 
-    // Methode zum Schießen der Waffe
     public virtual void Shoot()
     {
-        // Überprüfen, ob die Waffe nachlädt
         if (isReloading)
         {
             return; // Schießen nicht erlauben, wenn die Waffe nachlädt
         }
 
-        // Überprüfen, ob Munition vorhanden ist
         if (currentAmmo <= 0)
         {
-            StartCoroutine(Reload()); // Nachladevorgang starten, wenn keine Munition vorhanden ist
+            StartCoroutine(Reload()); // Nachladevorgang starten, wenn keine Munition im Magazin vorhanden ist
             return;
         }
 
-        // Schießen, wenn Bullet-Prefab und Firepoint vorhanden sind
-        if (bulletPrefab != null && firePoint != null)
+        if (bulletPrefab != null && firePoint != null && Time.time >= nextTimeToFire)
         {
-            // Kugel erstellen und abschießen
+            nextTimeToFire = Time.time + fireRate;
+
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             if (rb != null)
@@ -61,19 +60,53 @@ public class Weapon : MonoBehaviour
                 bulletMonster.SetDamage(damage);
             }
 
-            currentAmmo--; // Verringere die aktuelle Munition nach dem Schießen
+            currentAmmo--; // Verringere die aktuelle Munition im Magazin nach dem Schießen
         }
     }
 
-    // Coroutine zum Nachladen der Waffe
-    protected IEnumerator Reload()
+    //Getter und Setter für meinen PlayerController
+    public bool IsReloading()
     {
+        return isReloading;
+    }
+
+    public int CurrentAmmo
+    {
+        get { return currentAmmo; }
+    }
+
+    public int MagazineCapacity
+    {
+        get { return magazineCapacity; }
+    }
+
+
+    public IEnumerator Reload()
+    {
+        if (totalAmmo <= 0)
+        {
+            Debug.Log("Out of Ammo!");
+            yield break; // Kein Nachladen möglich, wenn keine Gesamtmunition vorhanden ist
+        }
+
         isReloading = true; // Setzt den Zustand auf "Nachladen"
         Debug.Log("Reloading...");
 
         yield return new WaitForSeconds(reloadTime); // Wartet für die Dauer der Nachladezeit
 
-        currentAmmo = maxAmmo; // Setzt die aktuelle Munition nach dem Nachladen auf die maximale Munition
+        int ammoNeeded = magazineCapacity - currentAmmo; // Berechne, wie viele Kugeln zum Auffüllen des Magazins benötigt werden
+
+        if (totalAmmo >= ammoNeeded)
+        {
+            currentAmmo = magazineCapacity; // Fülle das Magazin vollständig auf
+            totalAmmo -= ammoNeeded; // Verringere die Gesamtmunition um die nachgeladene Anzahl
+        }
+        else
+        {
+            currentAmmo += totalAmmo; // Fülle das Magazin mit der verbleibenden Gesamtmunition auf
+            totalAmmo = 0; // Setze die Gesamtmunition auf 0
+        }
+
         isReloading = false; // Setzt den Nachladestatus zurück
     }
 }

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    private int goldCount = 0;
-    private int silverCount = 0;
-    private int bronzeCount = 0;
+    [SerializeField] private int goldCount = 0;
+    [SerializeField] private int silverCount = 0;
+    [SerializeField] private int bronzeCount = 0;
+
+    [SerializeField] private int ammoBullets = 0;
+    [SerializeField] private int ammoRockets = 0;
 
     private PlayerHealth playerHealth;
 
@@ -47,6 +50,19 @@ public class PlayerInventory : MonoBehaviour
                 // Implementiere Logik für Mana-Wiederherstellung
                 break;
                 // Fügen Sie hier weitere Fälle für andere Item-Typen hinzu
+        }
+    }
+
+    public void PickupBullets(BulletsLoot.BulletType bulletType, int value)
+    {
+        switch (bulletType)
+        {
+            case BulletsLoot.BulletType.Bullets:
+                ammoBullets += value;
+                break;
+            case BulletsLoot.BulletType.Rockets:
+                ammoRockets += value;
+                break;
         }
     }
 
