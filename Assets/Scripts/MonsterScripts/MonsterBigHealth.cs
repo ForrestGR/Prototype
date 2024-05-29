@@ -7,8 +7,11 @@ public class MonsterBigHealth : MonoBehaviour, IMonsterHealth
     [SerializeField] private int maxHealth = 200;
     [SerializeField] private int currentHealth;
     [SerializeField] private GameObject lootPrefab;  // Referenz zum Loot-Prefab
+    [SerializeField] private GameObject bulletLootPrefab; //Referenz zum Bullet Drop Prefab
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
-    [SerializeField] private float dropChance = 2f;  // Chance für das Droppen des Loots
+    [SerializeField] private Transform bulletLootSpawnPoint;
+    [SerializeField] [Range(0f, 1f)] private float dropChanceLoot;  // Chance für das Droppen des Loots
+    [SerializeField] [Range(0f, 1f)] private float dropChanceBullets;
     private bool isDead = false;  // Variable, um zu überprüfen, ob das Monster bereits tot ist
     [SerializeField] private int xpValue = 50; // XP-Wert, den das Monster beim Tod gibt
 
@@ -38,6 +41,7 @@ public class MonsterBigHealth : MonoBehaviour, IMonsterHealth
 
         isDead = true;  // Setze isDead auf true, um anzuzeigen, dass das Monster tot ist
         DropLoot();  // Rufe die DropLoot-Methode auf
+        DropBullets();
 
         //XP für den Spieler, wenn Monster stirbt
         PlayerHealth player = FindObjectOfType<PlayerHealth>();
@@ -55,10 +59,23 @@ public class MonsterBigHealth : MonoBehaviour, IMonsterHealth
         if (lootPrefab != null)
         {
             float randomValue = Random.value;  // Zufälliger Wert zwischen 0 und 1
-            if (randomValue < dropChance)
+            if (randomValue < dropChanceLoot)
             {
-                Vector3 spawnPosition = lootSpawnPoint != null ? lootSpawnPoint.position : transform.position;
-                Instantiate(lootPrefab, spawnPosition, Quaternion.identity);
+                Vector3 spawnPositionLoot = lootSpawnPoint != null ? lootSpawnPoint.position : transform.position;
+                Instantiate(lootPrefab, spawnPositionLoot, Quaternion.identity);
+            }
+        }
+    }
+
+    private void DropBullets()
+    {
+        if (bulletLootPrefab != null)
+        {
+            float randValue = Random.value; 
+            if (Random.value < dropChanceBullets)
+            {
+                Vector3 spawnPositionBullet = bulletLootSpawnPoint != null ? bulletLootSpawnPoint.position : transform.position;
+                Instantiate(bulletLootPrefab, spawnPositionBullet, Quaternion.identity);
             }
         }
     }

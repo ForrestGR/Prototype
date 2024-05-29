@@ -11,12 +11,12 @@ public class MonsterHealth : MonoBehaviour, IMonsterHealth
     [SerializeField] private GameObject lootPrefab;  // Referenz zum Loot-Prefab
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
     [SerializeField][Range(0f, 1f)] private float dropChanceLoot = 0.2f;  // Chance für das Droppen des Loots (0 bis 1)
-    
-    [SerializeField] private int xpValue = 50; // XP-Wert, den das Monster beim Tod gibt
-    
+        
     [SerializeField] private GameObject itemPrefab; // Prefab des Items, das fallen gelassen wird
     [SerializeField][Range(0f, 1f)] private float dropChanceHealthItem = 0.5f; // Wahrscheinlichkeit, dass ein Item fallen gelassen wird
     [SerializeField] private Transform itemSpawnPoint;
+
+    [SerializeField] private int xpValue = 50; // XP-Wert, den das Monster beim Tod gibt
 
     private void Start()
     {
@@ -81,4 +81,6 @@ public class MonsterHealth : MonoBehaviour, IMonsterHealth
 
         }
     }
+
+    
 }

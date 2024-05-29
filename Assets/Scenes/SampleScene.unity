@@ -315,7 +315,7 @@ MonoBehaviour:
   goldCount: 0
   silverCount: 0
   bronzeCount: 0
-  ammoBullets: 0
+  ammoBullets: 180
   ammoRockets: 0
 --- !u!114 &109792149
 MonoBehaviour:
