@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] protected GameObject bulletPrefab; 
-    [SerializeField] protected Transform firePoint; 
-    [SerializeField] protected float bulletForce; 
-    [SerializeField] protected int damage; 
+    [SerializeField] protected GameObject bulletPrefab;
+    [SerializeField] protected Transform firePoint;
+    [SerializeField] protected float bulletForce;
+    [SerializeField] protected int damage;
     [SerializeField] protected float fireRate;
-    [SerializeField] protected int totalAmmo; 
+    //[SerializeField] protected int totalAmmo;
     [SerializeField] protected int magazineCapacity;
-    [SerializeField] protected int currentAmmo; 
-    [SerializeField] protected float reloadTime; 
+    [SerializeField] protected int currentAmmo;
+    [SerializeField] protected float reloadTime;
 
     protected bool isReloading = false; // Gibt an, ob die Waffe gerade nachlädt
     protected float nextTimeToFire = 0f;
 
+    //PlayerInventory playerInventory;
+
     protected virtual void Start()
     {
         currentAmmo = magazineCapacity; // Setzt die aktuelle Munition im Magazin auf die maximale Munition zu Beginn
+        //playerInventory = GetComponent<PlayerInventory>();
     }
 
     public virtual void Shoot()
@@ -31,7 +34,9 @@ public class Weapon : MonoBehaviour
 
         if (currentAmmo <= 0)
         {
-            StartCoroutine(Reload()); // Nachladevorgang starten, wenn keine Munition im Magazin vorhanden ist
+            // Hinweis: Spieler sollten informiert werden, dass das Magazin leer ist
+            Debug.Log("Out of Ammo! Reload needed.");
+            //StartCoroutine(Reload(playerInventory)); // Nachladevorgang starten, wenn keine Munition im Magazin vorhanden ist
             return;
         }
 
@@ -81,8 +86,9 @@ public class Weapon : MonoBehaviour
     }
 
 
-    public IEnumerator Reload()
+    public IEnumerator Reload(PlayerInventory playerInventory)
     {
+        int totalAmmo = playerInventory.GetAmmoBullets();
         if (totalAmmo <= 0)
         {
             Debug.Log("Out of Ammo!");
@@ -96,17 +102,20 @@ public class Weapon : MonoBehaviour
 
         int ammoNeeded = magazineCapacity - currentAmmo; // Berechne, wie viele Kugeln zum Auffüllen des Magazins benötigt werden
 
+
         if (totalAmmo >= ammoNeeded)
         {
             currentAmmo = magazineCapacity; // Fülle das Magazin vollständig auf
-            totalAmmo -= ammoNeeded; // Verringere die Gesamtmunition um die nachgeladene Anzahl
+            playerInventory.ConsumeAmmo(ammoNeeded); // Verringere die Gesamtmunition um die nachgeladene Anzahl
         }
         else
         {
             currentAmmo += totalAmmo; // Fülle das Magazin mit der verbleibenden Gesamtmunition auf
-            totalAmmo = 0; // Setze die Gesamtmunition auf 0
+            playerInventory.ConsumeAmmo(totalAmmo); // Setze die Gesamtmunition auf 0
         }
 
         isReloading = false; // Setzt den Nachladestatus zurück
+
     }
 }
+    

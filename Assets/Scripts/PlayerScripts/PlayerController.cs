@@ -7,6 +7,15 @@ public class PlayerController : MonoBehaviour
     public Transform weaponHolder;  // Ein leeres GameObject an der Position, wo die Waffe am Spieler befestigt werden soll
     public Weapon currentWeapon;  // Die aktuell ausgerüstete Waffe
 
+
+    private PlayerInventory playerInventory;
+
+    void Start()
+    {
+        playerInventory = GetComponent<PlayerInventory>();
+    }
+
+
     void Update()
     {
         // Überprüfen, ob die Taste "G" gedrückt wird, um die Waffe fallen zu lassen
@@ -24,13 +33,12 @@ public class PlayerController : MonoBehaviour
         // Überprüfen, ob die Taste "R" gedrückt wird, um nachzuladen
         if (Input.GetKeyDown(KeyCode.R) && currentWeapon != null && !currentWeapon.IsReloading() && currentWeapon.CurrentAmmo < currentWeapon.MagazineCapacity)
         {
-            StartCoroutine(currentWeapon.Reload());
+            StartCoroutine(currentWeapon.Reload(playerInventory));
         }
     }
 
     public void EquipWeapon(GameObject weapon)
     {
-        // Überprüfen, ob der Spieler bereits eine Waffe hält und ob die neue Waffe dieselbe ist
         if (currentWeapon != null && currentWeapon.gameObject != weapon)
         {
             // Optional: Die bisherige Waffe deaktivieren oder verstecken, anstatt sie zu zerstören

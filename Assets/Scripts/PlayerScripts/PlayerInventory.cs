@@ -66,6 +66,16 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public int GetAmmoBullets()
+    {
+        return ammoBullets;
+    }
+
+    public void ConsumeAmmo(int amount)
+    {
+        ammoBullets = Mathf.Max(0, ammoBullets - amount);
+    }
+
 
 
     public bool HasEnoughGold(int amount)
@@ -85,9 +95,4 @@ public class PlayerInventory : MonoBehaviour
             Debug.LogWarning("Nicht genug Gold!");
         }
     }
-
-
-
 }
-
-

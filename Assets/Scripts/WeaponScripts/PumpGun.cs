@@ -9,6 +9,9 @@ public class Shotgun : Weapon
 
     public override void Shoot()
     {
+
+
+
         if (Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + fireRate;
