@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Transform weaponHolder;  // Ein leeres GameObject an der Position, wo die Waffe am Spieler befestigt werden soll
     public Weapon currentWeapon;  // Die aktuell ausgerüstete Waffe
+    private List<Weapon> weapons;  // Die Liste der Waffen des Spielers
 
 
     private PlayerInventory playerInventory;
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerInventory = GetComponent<PlayerInventory>();
+        weapons = playerInventory.GetWeapons();
     }
 
 
@@ -34,6 +36,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && currentWeapon != null && !currentWeapon.IsReloading() && currentWeapon.CurrentAmmo < currentWeapon.MagazineCapacity)
         {
             StartCoroutine(currentWeapon.Reload(playerInventory));
+        }
+
+        // Wechsel zwischen Waffen mit den Tasten 1 und 2
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            EquipWeaponByIndex(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            EquipWeaponByIndex(1);
         }
     }
 
@@ -76,6 +88,14 @@ public class PlayerController : MonoBehaviour
 
             // Setze currentWeapon auf null, da die Waffe jetzt fallen gelassen wurde
             currentWeapon = null;
+        }
+    }
+
+    private void EquipWeaponByIndex(int index)
+    {
+        if (index < weapons.Count)
+        {
+            EquipWeapon(weapons[index].gameObject);
         }
     }
 }

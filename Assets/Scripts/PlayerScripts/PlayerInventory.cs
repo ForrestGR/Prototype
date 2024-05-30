@@ -11,7 +11,12 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private int ammoBullets = 0;
     [SerializeField] private int ammoRockets = 0;
 
+    //[SerializeField] private int maxWeapons = 2;
+
     private PlayerHealth playerHealth;
+
+    // Liste der Waffen, die der Spieler besitzt
+    [SerializeField] private List<Weapon> weapons = new List<Weapon>(2);// Maximale Kapazität auf 2 setzen
 
     private void Start()
     {
@@ -88,11 +93,26 @@ public class PlayerInventory : MonoBehaviour
         if (HasEnoughGold(amount))
         {
             goldCount -= amount;
-            Debug.Log("Gold ausgegeben! Verbleibendes Gold: " + goldCount);
+            //Debug.Log("Gold ausgegeben! Verbleibendes Gold: " + goldCount);
         }
         else
         {
             Debug.LogWarning("Nicht genug Gold!");
         }
     }
+
+    public void AddWeapon(Weapon weapon)
+    {
+        if (!weapons.Contains(weapon))
+        {
+            weapons.Add(weapon);
+            //Debug.Log("Waffe hinzugefügt: " + weapon.name);
+        }
+    }
+
+    public List<Weapon> GetWeapons()
+    {
+        return weapons;
+    }
+
 }

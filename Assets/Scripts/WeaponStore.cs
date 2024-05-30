@@ -9,7 +9,6 @@ public class WeaponStore : MonoBehaviour
     [SerializeField] private int weaponCost = 600;
 
     private bool isPlayerInRange = false; // Überprüft, ob der Spieler in der Nähe ist
-    private WeaponStoreUI weaponStoreUI; // Referenz zum UI-Skript
 
     private void Start()
     {
@@ -20,7 +19,6 @@ public class WeaponStore : MonoBehaviour
             playerInteraction.OnWeaponStoreExit += HandlePlayerExit;
         }
 
-        weaponStoreUI = FindObjectOfType<WeaponStoreUI>(); // Findet das UI-Skript
     }
 
     private void OnDestroy()
@@ -39,17 +37,7 @@ public class WeaponStore : MonoBehaviour
         {
             isPlayerInRange = true;
             Debug.Log("Player entered the weapon store range.");
-
-
-            // Zeigt das UI-Panel an
-            if (weaponStoreUI != null)
-            {
-                weaponStoreUI.ShowStore(this, "AK47", weaponCost);
-            }
         }
-
-
-
     }
 
     private void HandlePlayerExit(WeaponStore store)
@@ -59,12 +47,6 @@ public class WeaponStore : MonoBehaviour
             isPlayerInRange = false;
             Debug.Log("Player left the weapon store range.");
 
-
-            // Verbirgt das UI-Panel
-            if (weaponStoreUI != null)
-            {
-                weaponStoreUI.HideStore();
-            }
         }
     }
 
