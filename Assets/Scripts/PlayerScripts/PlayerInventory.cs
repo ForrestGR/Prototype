@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,10 +18,16 @@ public class PlayerInventory : MonoBehaviour
 
     // Liste der Waffen, die der Spieler besitzt
     [SerializeField] private List<Weapon> weapons = new List<Weapon>(2);// Maximale Kapazität auf 2 setzen
+    
+    // Ereignis für Änderungen an der Munition
+    public event Action<int> OnAmmoChanged;
 
     private void Start()
     {
         playerHealth = GetComponent<PlayerHealth>();
+        
+        // Initiales Auslösen des Ereignisses, um die aktuelle Munition anzuzeigen
+        OnAmmoChanged?.Invoke(ammoBullets);
     }
 
     public void PickupLoot(Loot.LootType lootType, int value)
@@ -64,6 +71,7 @@ public class PlayerInventory : MonoBehaviour
         {
             case BulletsLoot.BulletType.Bullets:
                 ammoBullets += value;
+                OnAmmoChanged?.Invoke(ammoBullets); // Ereignis auslösen
                 break;
             case BulletsLoot.BulletType.Rockets:
                 ammoRockets += value;
@@ -79,6 +87,7 @@ public class PlayerInventory : MonoBehaviour
     public void ConsumeAmmo(int amount)
     {
         ammoBullets = Mathf.Max(0, ammoBullets - amount);
+        OnAmmoChanged?.Invoke(ammoBullets); // Ereignis auslösen
     }
 
 

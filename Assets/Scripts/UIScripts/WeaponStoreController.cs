@@ -67,13 +67,13 @@ public class WeaponStoreController : MonoBehaviour
 
     private void BuyAK47()
     {
-        if (playerInventory.HasEnoughGold(ak47Cost)) // Beispiel: AK47 kostet 100 Gold
+        if (playerInventory.HasEnoughGold(ak47Cost)) 
         {
             playerInventory.SpendGold(ak47Cost);
             GameObject ak47 = Instantiate(ak47Prefab);
             playerInventory.AddWeapon(ak47.GetComponent<Weapon>());
             playerController.EquipWeapon(ak47);
-            Debug.Log("AK47 gekauft und ausgerüstet!");
+            //Debug.Log("AK47 gekauft und ausgerüstet!");
         }
         else
         {
@@ -83,13 +83,13 @@ public class WeaponStoreController : MonoBehaviour
 
     private void BuyFamas()
     {
-        if (playerInventory.HasEnoughGold(famasCost)) // Beispiel: FAMAS kostet 150 Gold
+        if (playerInventory.HasEnoughGold(famasCost)) 
         {
             playerInventory.SpendGold(famasCost);
             GameObject famas = Instantiate(famasPrefab);
             playerInventory.AddWeapon(famas.GetComponent<Weapon>());
             playerController.EquipWeapon(famas);
-            Debug.Log("FAMAS gekauft und ausgerüstet!");
+            //Debug.Log("FAMAS gekauft und ausgerüstet!");
         }
         else
         {

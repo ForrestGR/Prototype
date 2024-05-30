@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,4 +64,59 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
         }
     }
+
+
+    //Methode, die den aktuellen und maximalen Gesundheitswert zurückgibt
+    public (int, int) GetHealthStatus()
+    {
+        return (currentHealth, maxHealth);
+    }
+
+
 }
+
+
+
+
+//Ereignis basierter Ansatz
+
+////PlayerHealth.cs
+//public class PlayerHealth : MonoBehaviour
+//{
+//    public event Action<int, int> OnHealthChanged;
+
+//    private void Start()
+//    {
+//        Initiale Gesundheitswert
+//        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+//    }
+
+//    public void TakeDamage(int damage)
+//    {
+//        currentHealth -= damage;
+//        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+//    }
+
+//    public void Heal(int amount)
+//    {
+//        currentHealth += amount;
+//        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+//    }
+//}
+
+//PlayerUIController.cs
+//public class PlayerUIController : MonoBehaviour
+//{
+//    private PlayerHealth playerHealth;
+
+//    void Start()
+//    {
+//        playerHealth = FindObjectOfType<PlayerHealth>();
+//        playerHealth.OnHealthChanged += UpdateHealthbar;
+//    }
+
+//    private void UpdateHealthbar(int currentHealth, int maxHealth)
+//    {
+//        healthbar.value = (float)currentHealth / maxHealth;
+//    }
+//}
