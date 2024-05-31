@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class BaseMonsterAI : MonoBehaviour
 {
-    public Transform player;  // Referenz zum Spieler-Transform
+    [SerializeField] public Transform player;  // Referenz zum Spieler-Transform
     [SerializeField] protected float speed = 4f;
     [SerializeField] protected int damage = 10;
 

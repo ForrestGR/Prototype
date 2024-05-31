@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster3AI : BaseMonsterAI
+public class TankMonsterAI : BaseMonsterAI
 {
-    //[SerializeField] private Transform player;  // Referenz zum Spieler-Transform
-    //[SerializeField] private float speed = 4f;
-    //[SerializeField] private int damage = 10;
-    [SerializeField] private Transform weaponHoldPoint; // Punkt, an dem die Waffe gehalten wird
-    [SerializeField] private GameObject weaponPrefab; // Prefab der Waffe
+    [SerializeField] private Transform weaponHoldPoint; 
+    [SerializeField] private GameObject weaponPrefab; 
     [SerializeField] private float shootingInterval = 2f; // Zeitintervall zwischen den Schüssen
     [SerializeField] private float shootDistance = 10f; // Distanz, in der das Monster schießen soll
     [SerializeField] private float maintainDistance = 5f; // Distanz, die das Monster zum Spieler halten soll
@@ -65,7 +62,6 @@ public class Monster3AI : BaseMonsterAI
         // Füge hier zusätzliche Logik hinzu, falls nötig
     }
 
-
     private void MoveAwayFromPlayer()
     {
         Vector3 direction = (transform.position - player.position).normalized;
@@ -78,7 +74,7 @@ public class Monster3AI : BaseMonsterAI
     {
         // Implementiere die Schusslogik hier, z.B. Projektil erzeugen und in Richtung des Spielers schießen
         // Hier könntest du eine Methode in deinem Waffenskript aufrufen, um zu schießen
-        Weapon weapon = weaponHoldPoint.GetComponentInChildren<Weapon>();
+        BaseWeapon weapon = weaponHoldPoint.GetComponentInChildren<BaseWeapon>();
         if (weapon != null)
         {
             weapon.Shoot();
@@ -87,11 +83,5 @@ public class Monster3AI : BaseMonsterAI
         {
             Debug.LogError("Weapon script not found on the weapon.");
         }
-    }
-
-    protected override void OnCollisionEnter(Collision collision)
-    {
-        base.OnCollisionEnter(collision);
-        // Füge hier zusätzliche Logik hinzu, falls nötig
     }
 }

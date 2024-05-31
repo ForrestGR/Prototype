@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterRandomHealth : MonoBehaviour, IMonsterHealth
-{
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currentHealth;
+public class TankMonsterHealth : BaseMonster, IMonsterHealth
+{   
     [SerializeField] private List<GameObject> lootPrefabs;  // Liste der Loot-Prefabs
     [SerializeField] private List<float> lootDropChances;  // Liste der Wahrscheinlichkeiten für jedes Loot-Prefab
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
-    [SerializeField][Range(0f, 1f)] private float dropChance = 0.2f;  // Generelle Drop-Chance (0 bis 1)
-    private bool isDead = false;  // Variable, um zu überprüfen, ob das Monster bereits tot ist
+    [SerializeField][Range(0f, 1f)] private float dropChance;  // Generelle Drop-Chance (0 bis 1)
+   
 
     private void Start()
     {

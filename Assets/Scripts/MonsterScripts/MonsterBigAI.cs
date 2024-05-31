@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class MonsterBigAI : BaseMonsterAI
 {
-    // Spezifische Logik für MonsterBigAI kann hier hinzugefügt werden
+    // Extra Logik für die KI des großen Monsters
 
-    protected override void MoveTowardsPlayer()
-    {
-        base.MoveTowardsPlayer();
-        // Füge hier zusätzliche Logik hinzu, falls nötig
-    }
 
-    protected override void OnCollisionEnter(Collision collision)
-    {
-        base.OnCollisionEnter(collision);
-        // Füge hier zusätzliche Logik hinzu, falls nötig
-    }
 }

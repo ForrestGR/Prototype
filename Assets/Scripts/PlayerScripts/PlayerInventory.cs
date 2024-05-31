@@ -17,7 +17,7 @@ public class PlayerInventory : MonoBehaviour
     private PlayerHealth playerHealth;
 
     // Liste der Waffen, die der Spieler besitzt
-    [SerializeField] private List<Weapon> weapons = new List<Weapon>(2);// Maximale Kapazität auf 2 setzen
+    [SerializeField] private List<BaseWeapon> weapons = new List<BaseWeapon>(2);// Maximale Kapazität auf 2 setzen
 
 
     // Events
@@ -33,8 +33,8 @@ public class PlayerInventory : MonoBehaviour
         // Initiales Auslösen der Ereignisse
         OnAmmoChanged?.Invoke(ammoBullets);
         OnGoldChanged?.Invoke(goldCount);
-        OnGoldChanged?.Invoke(silberCount);
-        OnGoldChanged?.Invoke(bronzeCount);
+        OnSilverChanged?.Invoke(silberCount);
+        OnBronzeChanged?.Invoke(bronzeCount);
     }
 
     public void PickupLoot(Loot.LootType lootType, int value)
@@ -47,11 +47,11 @@ public class PlayerInventory : MonoBehaviour
                 break;
             case Loot.LootType.Silver:
                 silberCount += value;
-                OnGoldChanged?.Invoke(silberCount);
+                OnSilverChanged?.Invoke(silberCount);
                 break;
             case Loot.LootType.Bronze:
                 bronzeCount += value;
-                OnGoldChanged?.Invoke(bronzeCount);
+                OnBronzeChanged?.Invoke(bronzeCount);
                 break;
                 // Fügen Sie hier weitere Fälle für andere Loot-Typen hinzu
         }
@@ -133,7 +133,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
 
-    public void AddWeapon(Weapon weapon)
+    public void AddWeapon(BaseWeapon weapon)
     {
         if (!weapons.Contains(weapon))
         {
@@ -142,7 +142,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public List<Weapon> GetWeapons()
+    public List<BaseWeapon> GetWeapons()
     {
         return weapons;
     }

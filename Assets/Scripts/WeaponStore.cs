@@ -85,7 +85,7 @@ public class WeaponStore : MonoBehaviour
                     Debug.Log("AK47 purchased and equipped.");
 
                     // Waffe als aktuelle Waffe des Spielers ausrüsten
-                    Weapon ak47Weapon = ak47.GetComponent<Weapon>();
+                    BaseWeapon ak47Weapon = ak47.GetComponent<BaseWeapon>();
                     if (ak47Weapon != null)
                     {
                         playerController.EquipWeapon(ak47);

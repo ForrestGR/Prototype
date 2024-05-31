@@ -71,7 +71,7 @@ public class WeaponStoreController : MonoBehaviour
         {
             playerInventory.SpendGold(ak47Cost);
             GameObject ak47 = Instantiate(ak47Prefab);
-            playerInventory.AddWeapon(ak47.GetComponent<Weapon>());
+            playerInventory.AddWeapon(ak47.GetComponent<BaseWeapon>());
             playerController.EquipWeapon(ak47);
             playerController.UpdateAmmoUI();
             //Debug.Log("AK47 gekauft und ausgerüstet!");
@@ -88,7 +88,7 @@ public class WeaponStoreController : MonoBehaviour
         {
             playerInventory.SpendGold(famasCost);
             GameObject famas = Instantiate(famasPrefab);
-            playerInventory.AddWeapon(famas.GetComponent<Weapon>());
+            playerInventory.AddWeapon(famas.GetComponent<BaseWeapon>());
             playerController.EquipWeapon(famas);
             playerController.UpdateAmmoUI();
             //Debug.Log("FAMAS gekauft und ausgerüstet!");

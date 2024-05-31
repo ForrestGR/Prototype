@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Famas : Weapon
+public class Famas : BaseWeapon
 {
     // // Feuerrate in Sekunden zwischen den Schüssen
     //private float nextTimeToFire = 0f;

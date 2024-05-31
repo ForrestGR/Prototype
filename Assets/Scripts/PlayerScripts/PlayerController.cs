@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Transform weaponHolder;  // Ein leeres GameObject an der Position, wo die Waffe am Spieler befestigt werden soll
-    public Weapon weapon;  // Die aktuell ausgerüstete Waffe
-    private List<Weapon> weapons;  // Die Liste der Waffen des Spielers
+    public BaseWeapon weapon;  // Die aktuell ausgerüstete Waffe
+    private List<BaseWeapon> weapons;  // Die Liste der Waffen des Spielers
 
 
     private PlayerInventory playerInventory;
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Setze die neue Waffe als die aktuelle Waffe
-        this.weapon = weapon.GetComponent<Weapon>();
+        this.weapon = weapon.GetComponent<BaseWeapon>();
 
         // Setze die neue Waffe als Kind des weaponHolder-Transforms
         this.weapon.transform.SetParent(weaponHolder);

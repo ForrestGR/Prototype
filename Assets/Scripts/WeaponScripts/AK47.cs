@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AK47 : Weapon
+public class AK47 : BaseWeapon
 {
     //[SerializeField] private float fireRate = 0.1f; // Feuerrate in Sekunden zwischen den Schüssen
     //private float nextTimeToFire = 0f;

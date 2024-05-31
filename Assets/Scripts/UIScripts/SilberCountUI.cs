@@ -14,7 +14,7 @@ public class SilberCountUI : MonoBehaviour
         playerInventory = FindObjectOfType<PlayerInventory>();
         if (playerInventory != null)
         {
-            playerInventory.OnGoldChanged += UpdateSilberCount;
+            playerInventory.OnSilverChanged += UpdateSilberCount;
             // Initial update of ammo count text
             UpdateSilberCount(playerInventory.GetSilberCount());
         }

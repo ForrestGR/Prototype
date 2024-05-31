@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shotgun : Weapon
+public class Shotgun : BaseWeapon
 {
     [SerializeField] private int pelletsPerShot = 10; // Anzahl der Kugeln pro Schuss
     [SerializeField] private float spreadAngle = 10f; // Streuwinkel in Grad

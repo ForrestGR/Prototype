@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterBigHealth : MonoBehaviour, IMonsterHealth
+public class MonsterBigHealth : BaseMonster, IMonsterHealth
 {
-    [SerializeField] private int maxHealth = 200;
-    [SerializeField] private int currentHealth;
     [SerializeField] private GameObject lootPrefab;  // Referenz zum Loot-Prefab
     [SerializeField] private GameObject bulletLootPrefab; //Referenz zum Bullet Drop Prefab
     [SerializeField] private Transform lootSpawnPoint;  // Optional: Punkt, an dem das Loot gespawnt wird
     [SerializeField] private Transform bulletLootSpawnPoint;
     [SerializeField] [Range(0f, 1f)] private float dropChanceLoot;  // Chance für das Droppen des Loots
     [SerializeField] [Range(0f, 1f)] private float dropChanceBullets;
-    private bool isDead = false;  // Variable, um zu überprüfen, ob das Monster bereits tot ist
-    [SerializeField] private int xpValue = 50; // XP-Wert, den das Monster beim Tod gibt
 
 
     private void Start()
