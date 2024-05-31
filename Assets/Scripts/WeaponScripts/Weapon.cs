@@ -9,10 +9,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float bulletForce;
     [SerializeField] protected int damage;
     [SerializeField] protected float fireRate;
-    //[SerializeField] protected int totalAmmo;
     [SerializeField] protected int magazineCapacity;
     [SerializeField] protected int currentAmmo;
     [SerializeField] protected float reloadTime;
+    //[SerializeField] protected int totalAmmo;
 
     protected bool isReloading = false; // Gibt an, ob die Waffe gerade nachlädt
     protected float nextTimeToFire = 0f;
@@ -66,6 +66,7 @@ public class Weapon : MonoBehaviour
             }
 
             currentAmmo--; // Verringere die aktuelle Munition im Magazin nach dem Schießen
+            UpdateAmmoUI(); // Aktualisieren Sie die Munition im UI nach dem Schuss
         }
     }
 
@@ -115,7 +116,17 @@ public class Weapon : MonoBehaviour
         }
 
         isReloading = false; // Setzt den Nachladestatus zurück
+        UpdateAmmoUI(); // Aktualisieren Sie die Munition im UI nach dem Nachladen
+    }
 
+
+    private void UpdateAmmoUI()
+    {
+        AmmoCountUI ammoUI = FindObjectOfType<AmmoCountUI>();
+        if (ammoUI != null)
+        {
+            ammoUI.UpdateCurrentAmmoCount(currentAmmo, magazineCapacity);
+        }
     }
 }
     

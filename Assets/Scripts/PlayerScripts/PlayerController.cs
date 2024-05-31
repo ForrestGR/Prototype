@@ -5,16 +5,24 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Transform weaponHolder;  // Ein leeres GameObject an der Position, wo die Waffe am Spieler befestigt werden soll
-    public Weapon currentWeapon;  // Die aktuell ausgerüstete Waffe
+    public Weapon weapon;  // Die aktuell ausgerüstete Waffe
     private List<Weapon> weapons;  // Die Liste der Waffen des Spielers
 
 
     private PlayerInventory playerInventory;
+    private BaseMonster baseMonster;
 
     void Start()
     {
         playerInventory = GetComponent<PlayerInventory>();
         weapons = playerInventory.GetWeapons();
+
+        //// Initialisierung von baseMonster
+        //baseMonster = FindObjectOfType<BaseMonster>();
+        //if (baseMonster == null)
+        //{
+        //    Debug.LogError("BaseMonster wurde nicht gefunden!");
+        //}
     }
 
 
@@ -27,15 +35,16 @@ public class PlayerController : MonoBehaviour
         }
 
         // Überprüfen, ob die linke Maustaste gedrückt wird, um zu schießen
-        if (Input.GetMouseButton(0) && currentWeapon != null)
+        if (Input.GetMouseButton(0) && weapon != null)
         {
-            currentWeapon.Shoot();
+            weapon.Shoot();
+            UpdateAmmoUI();
         }
 
         // Überprüfen, ob die Taste "R" gedrückt wird, um nachzuladen
-        if (Input.GetKeyDown(KeyCode.R) && currentWeapon != null && !currentWeapon.IsReloading() && currentWeapon.CurrentAmmo < currentWeapon.MagazineCapacity)
+        if (Input.GetKeyDown(KeyCode.R) && weapon != null && !weapon.IsReloading() && weapon.CurrentAmmo < weapon.MagazineCapacity)
         {
-            StartCoroutine(currentWeapon.Reload(playerInventory));
+            StartCoroutine(weapon.Reload(playerInventory));
         }
 
         // Wechsel zwischen Waffen mit den Tasten 1 und 2
@@ -47,47 +56,63 @@ public class PlayerController : MonoBehaviour
         {
             EquipWeaponByIndex(1);
         }
+
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    if (baseMonster != null)
+        //    {
+        //        baseMonster.KillAllMonsters();
+        //    }
+        //    else
+        //    {
+        //        Debug.LogError("baseMonster ist null und kann nicht aufgerufen werden.");
+        //    }
+        //}
+
+
     }
 
     public void EquipWeapon(GameObject weapon)
     {
-        if (currentWeapon != null && currentWeapon.gameObject != weapon)
+        if (this.weapon != null && this.weapon.gameObject != weapon)
         {
             // Optional: Die bisherige Waffe deaktivieren oder verstecken, anstatt sie zu zerstören
-            currentWeapon.gameObject.SetActive(false);
+            this.weapon.gameObject.SetActive(false);
         }
 
         // Setze die neue Waffe als die aktuelle Waffe
-        currentWeapon = weapon.GetComponent<Weapon>();
+        this.weapon = weapon.GetComponent<Weapon>();
 
         // Setze die neue Waffe als Kind des weaponHolder-Transforms
-        currentWeapon.transform.SetParent(weaponHolder);
+        this.weapon.transform.SetParent(weaponHolder);
 
-        currentWeapon.transform.localPosition = Vector3.zero;
-        currentWeapon.transform.localRotation = Quaternion.Euler(90, 0, 0); // Setze Rotation auf Null oder auf eine bestimmte Rotation, wenn nötig
+        this.weapon.transform.localPosition = Vector3.zero;
+        this.weapon.transform.localRotation = Quaternion.Euler(90, 0, 0); // Setze Rotation auf Null oder auf eine bestimmte Rotation, wenn nötig
 
         // Deaktiviere den Collider der Waffe, um physikalische Kollisionen zu vermeiden
-        currentWeapon.GetComponent<Collider>().enabled = false;
+        this.weapon.GetComponent<Collider>().enabled = false;
 
         // Optional: Die neue Waffe aktivieren, falls sie deaktiviert war
-        currentWeapon.gameObject.SetActive(true);
+        this.weapon.gameObject.SetActive(true);
+
+        UpdateAmmoUI();
     }
 
     public void DropWeapon()
     {
-        if (currentWeapon != null)
+        if (weapon != null)
         {
             // Entferne die Waffe vom weaponHolder
-            currentWeapon.transform.SetParent(null);
+            weapon.transform.SetParent(null);
 
             // Setze die Position der Waffe auf die aktuelle Position des Spielers
-            currentWeapon.transform.position = transform.position;
+            weapon.transform.position = transform.position;
 
             // Aktiviere den Collider der Waffe wieder
-            currentWeapon.GetComponent<Collider>().enabled = true;
+            weapon.GetComponent<Collider>().enabled = true;
 
             // Setze currentWeapon auf null, da die Waffe jetzt fallen gelassen wurde
-            currentWeapon = null;
+            weapon = null;
         }
     }
 
@@ -96,6 +121,15 @@ public class PlayerController : MonoBehaviour
         if (index < weapons.Count)
         {
             EquipWeapon(weapons[index].gameObject);
+        }
+    }
+
+    public void UpdateAmmoUI()
+    {
+        AmmoCountUI ammoUI = FindObjectOfType<AmmoCountUI>();
+        if (ammoUI != null && weapon != null)
+        {
+            ammoUI.UpdateCurrentAmmoCount(weapon.CurrentAmmo, weapon.MagazineCapacity);
         }
     }
 }

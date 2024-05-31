@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class AmmoCountUI : MonoBehaviour
 {
@@ -9,7 +7,6 @@ public class AmmoCountUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI magazineCountText;
 
     private PlayerInventory playerInventory;
-    private Weapon currentWeapon;
 
     private void Start()
     {
@@ -20,19 +17,9 @@ public class AmmoCountUI : MonoBehaviour
             // Initial update of ammo count text
             UpdateAmmoCount(playerInventory.GetAmmoBullets());
         }
-
-        currentWeapon = FindObjectOfType<Weapon>();
     }
 
-    private void Update()
-    {
-        if (currentWeapon != null)
-        {
-            UpdateCurrentAmmoCount(currentWeapon.CurrentAmmo, currentWeapon.MagazineCapacity);
-        }
-    }
-
-    private void UpdateAmmoCount(int currentAmmo)
+    public void UpdateAmmoCount(int currentAmmo)
     {
         if (maxAmmoCountText != null)
         {
@@ -40,7 +27,7 @@ public class AmmoCountUI : MonoBehaviour
         }
     }
 
-    private void UpdateCurrentAmmoCount(int currentAmmo, int magazineCapacity)
+    public void UpdateCurrentAmmoCount(int currentAmmo, int magazineCapacity)
     {
         if (magazineCountText != null)
         {

@@ -13,10 +13,11 @@ public class WeaponPickup : MonoBehaviour
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             // Überprüfen, ob der Spieler bereits diese Waffe hält
-            if (playerController.currentWeapon != gameObject.GetComponent<Weapon>())
+            if (playerController.weapon != gameObject.GetComponent<Weapon>())
             {
                 playerController.EquipWeapon(gameObject);
             }
+            playerController.UpdateAmmoUI();
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private int goldCount = 0;
-    [SerializeField] private int silverCount = 0;
+    [SerializeField] private int silberCount = 0;
     [SerializeField] private int bronzeCount = 0;
 
     [SerializeField] private int ammoBullets = 0;
@@ -18,16 +18,23 @@ public class PlayerInventory : MonoBehaviour
 
     // Liste der Waffen, die der Spieler besitzt
     [SerializeField] private List<Weapon> weapons = new List<Weapon>(2);// Maximale Kapazität auf 2 setzen
-    
-    // Ereignis für Änderungen an der Munition
+
+
+    // Events
     public event Action<int> OnAmmoChanged;
+    public event Action<int> OnGoldChanged;
+    public event Action<int> OnSilverChanged;
+    public event Action<int> OnBronzeChanged;
 
     private void Start()
     {
         playerHealth = GetComponent<PlayerHealth>();
         
-        // Initiales Auslösen des Ereignisses, um die aktuelle Munition anzuzeigen
+        // Initiales Auslösen der Ereignisse
         OnAmmoChanged?.Invoke(ammoBullets);
+        OnGoldChanged?.Invoke(goldCount);
+        OnGoldChanged?.Invoke(silberCount);
+        OnGoldChanged?.Invoke(bronzeCount);
     }
 
     public void PickupLoot(Loot.LootType lootType, int value)
@@ -36,15 +43,15 @@ public class PlayerInventory : MonoBehaviour
         {
             case Loot.LootType.Gold:
                 goldCount += value;
-                Debug.Log("Gold aufgenommen! Gesamtes Gold: " + goldCount);
+                OnGoldChanged?.Invoke(goldCount); // Event auslösen
                 break;
             case Loot.LootType.Silver:
-                silverCount += value;
-                Debug.Log("Silber aufgenommen! Gesamtes Silber: " + silverCount);
+                silberCount += value;
+                OnGoldChanged?.Invoke(silberCount);
                 break;
             case Loot.LootType.Bronze:
                 bronzeCount += value;
-                Debug.Log("Bronze aufgenommen! Gesamtes Bronze: " + bronzeCount);
+                OnGoldChanged?.Invoke(bronzeCount);
                 break;
                 // Fügen Sie hier weitere Fälle für andere Loot-Typen hinzu
         }
@@ -102,13 +109,29 @@ public class PlayerInventory : MonoBehaviour
         if (HasEnoughGold(amount))
         {
             goldCount -= amount;
-            //Debug.Log("Gold ausgegeben! Verbleibendes Gold: " + goldCount);
+            OnGoldChanged?.Invoke(goldCount);
         }
         else
         {
             Debug.LogWarning("Nicht genug Gold!");
         }
     }
+
+    public int GetGoldCount()
+    {
+        return goldCount;
+    }
+
+    public int GetSilberCount()
+    {
+        return silberCount;
+    }
+
+    public int GetBronzeCount()
+    {
+        return bronzeCount;
+    }
+
 
     public void AddWeapon(Weapon weapon)
     {

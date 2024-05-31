@@ -12,9 +12,15 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int xpToNextLevel = 100;
 
 
+    //Events
+    public event Action<int, int> OnHealthChanged;
+
     void Start()
     {
         currentHealth = maxHealth;
+
+        // Events
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     public void TakeDamage(int damage)
@@ -22,8 +28,10 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             Die();
         }
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     void Die()
@@ -33,7 +41,15 @@ public class PlayerHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public int GetCurrentHealth() 
+    { 
+        return currentHealth; 
+    }
 
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
 
     public void GainXP(int amount)
     {
@@ -55,7 +71,6 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
-
     public void Heal(int amount)
     {
         currentHealth += amount;
@@ -63,6 +78,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
 
@@ -71,52 +87,4 @@ public class PlayerHealth : MonoBehaviour
     {
         return (currentHealth, maxHealth);
     }
-
-
 }
-
-
-
-
-//Ereignis basierter Ansatz
-
-////PlayerHealth.cs
-//public class PlayerHealth : MonoBehaviour
-//{
-//    public event Action<int, int> OnHealthChanged;
-
-//    private void Start()
-//    {
-//        Initiale Gesundheitswert
-//        OnHealthChanged?.Invoke(currentHealth, maxHealth);
-//    }
-
-//    public void TakeDamage(int damage)
-//    {
-//        currentHealth -= damage;
-//        OnHealthChanged?.Invoke(currentHealth, maxHealth);
-//    }
-
-//    public void Heal(int amount)
-//    {
-//        currentHealth += amount;
-//        OnHealthChanged?.Invoke(currentHealth, maxHealth);
-//    }
-//}
-
-//PlayerUIController.cs
-//public class PlayerUIController : MonoBehaviour
-//{
-//    private PlayerHealth playerHealth;
-
-//    void Start()
-//    {
-//        playerHealth = FindObjectOfType<PlayerHealth>();
-//        playerHealth.OnHealthChanged += UpdateHealthbar;
-//    }
-
-//    private void UpdateHealthbar(int currentHealth, int maxHealth)
-//    {
-//        healthbar.value = (float)currentHealth / maxHealth;
-//    }
-//}

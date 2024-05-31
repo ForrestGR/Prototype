@@ -21,7 +21,7 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
-        if (playerController.currentWeapon != null && Input.GetMouseButtonDown(0)) // Linke Maustaste
+        if (playerController.weapon != null && Input.GetMouseButtonDown(0)) // Linke Maustaste
         {
             Shoot();
         }
