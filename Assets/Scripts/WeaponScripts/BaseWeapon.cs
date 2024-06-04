@@ -17,12 +17,12 @@ public class BaseWeapon : MonoBehaviour
     protected bool isReloading = false; // Gibt an, ob die Waffe gerade nachlädt
     protected float nextTimeToFire = 0f;
 
-    //PlayerInventory playerInventory;
+    protected PlayerInventory playerInventory;
 
     protected virtual void Start()
     {
-        currentAmmo = magazineCapacity; // Setzt die aktuelle Munition im Magazin auf die maximale Munition zu Beginn
-        //playerInventory = GetComponent<PlayerInventory>();
+        currentAmmo = magazineCapacity; // Setzt die aktuelle Munition im Magazin auf die maximale Munition zu Beginn        
+        playerInventory = FindObjectOfType<PlayerInventory>(); //Finde das PlayerInventory, um Nachladen zu können, nachdem die Muni leer ist
     }
 
     public virtual void Shoot()
@@ -36,7 +36,8 @@ public class BaseWeapon : MonoBehaviour
         {
             // Hinweis: Spieler sollten informiert werden, dass das Magazin leer ist
             Debug.Log("Out of Ammo! Reload needed.");
-            //StartCoroutine(Reload(playerInventory)); // Nachladevorgang starten, wenn keine Munition im Magazin vorhanden ist
+            StartCoroutine(Reload(playerInventory)); // Nachladen, wenn keine Kugeln mehr im Magazin sind
+
             return;
         }
 
@@ -92,12 +93,12 @@ public class BaseWeapon : MonoBehaviour
         int totalAmmo = playerInventory.GetAmmoBullets();
         if (totalAmmo <= 0)
         {
-            Debug.Log("Out of Ammo!");
+            //Debug.Log("Out of Ammo!");
             yield break; // Kein Nachladen möglich, wenn keine Gesamtmunition vorhanden ist
         }
 
         isReloading = true; // Setzt den Zustand auf "Nachladen"
-        Debug.Log("Reloading...");
+        //Debug.Log("Reloading...");
 
         yield return new WaitForSeconds(reloadTime); // Wartet für die Dauer der Nachladezeit
 
