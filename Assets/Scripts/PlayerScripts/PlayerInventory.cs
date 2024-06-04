@@ -12,12 +12,12 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private int ammoBullets = 0;
     [SerializeField] private int ammoRockets = 0;
 
-    //[SerializeField] private int maxWeapons = 2;
+    [SerializeField] private int maxWeapons = 2;
 
     private PlayerHealth playerHealth;
 
     // Liste der Waffen, die der Spieler besitzt
-    [SerializeField] private List<BaseWeapon> weapons = new List<BaseWeapon>(2);// Maximale Kapazität auf 2 setzen
+    [SerializeField] private List<BaseWeapon> weapons;
 
 
     // Events
@@ -35,6 +35,9 @@ public class PlayerInventory : MonoBehaviour
         OnGoldChanged?.Invoke(goldCount);
         OnSilverChanged?.Invoke(silberCount);
         OnBronzeChanged?.Invoke(bronzeCount);
+
+        // Initialisierung der Liste in der Start-Methode
+        weapons = new List<BaseWeapon>(maxWeapons);
     }
 
     public void PickupLoot(Loot.LootType lootType, int value)
