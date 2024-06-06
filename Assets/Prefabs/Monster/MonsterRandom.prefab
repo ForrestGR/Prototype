@@ -85,8 +85,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 150
   currentHealth: 0
-  lootPrefab: {fileID: 0}
-  lootSpawnPoint: {fileID: 1791277415381822893}
   xpValue: 75
   lootPrefabs:
   - {fileID: 7869010006552024374, guid: 4e9ed8402d91b1b42b3240be8489d297, type: 3}
@@ -96,6 +94,7 @@ MonoBehaviour:
   - 0.6
   - 0.3
   - 0.1
+  lootSpawnPoint: {fileID: 1791277415381822893}
   dropChance: 1
 --- !u!114 &-5771614297391474021
 MonoBehaviour:
@@ -321,7 +320,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7109104398064795677, guid: 5f3d07d75c5cb02478bb3154bf64bc0d, type: 3}
+    - {fileID: 2397618157613924280, guid: 5f3d07d75c5cb02478bb3154bf64bc0d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f3d07d75c5cb02478bb3154bf64bc0d, type: 3}
