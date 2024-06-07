@@ -8,6 +8,8 @@ public class MonsterSpawner : MonoBehaviour
     public Transform player;  // Referenz zum Spieler-Objekt
     public float spawnInterval = 2f;  // Intervallzeit in Sekunden
     public Vector3 spawnAreaSize = new Vector3(10, 0, 10);  // Größe des Spawnbereichs
+    public float minSpawnDistanceFromPlayer = 5f;  // Mindestabstand vom Spieler
+    public int maxSpawnAttempts = 100;  // Maximale Anzahl von Versuchen, um eine gültige Position zu finden
 
     void Start()
     {
@@ -29,7 +31,21 @@ public class MonsterSpawner : MonoBehaviour
         int randomIndex = Random.Range(0, monsterPrefabs.Length);
         GameObject monsterPrefab = monsterPrefabs[randomIndex];
 
-        Vector3 spawnPosition = GetRandomSpawnPosition();
+        Vector3 spawnPosition;
+        int attempts = 0;
+
+        do
+        {
+            spawnPosition = GetRandomSpawnPosition();
+            attempts++;
+        } while (Vector3.Distance(spawnPosition, player.position) < minSpawnDistanceFromPlayer && attempts < maxSpawnAttempts);
+
+        if (attempts >= maxSpawnAttempts)
+        {
+            Debug.LogWarning("Failed to find a valid spawn position after maximum attempts.");
+            return;  // Optional: Abbrechen, wenn keine gültige Position gefunden wird
+        }
+
         GameObject newMonster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
 
         // Setze die Spieler-Referenz des neu gespawnten Monsters

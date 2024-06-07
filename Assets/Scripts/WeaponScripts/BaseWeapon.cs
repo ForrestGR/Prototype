@@ -19,10 +19,16 @@ public class BaseWeapon : MonoBehaviour
 
     protected PlayerInventory playerInventory;
 
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip shootSound; // Füge ein Feld für den Schuss-Sound hinzu
+
     protected virtual void Start()
     {
         currentAmmo = magazineCapacity; // Setzt die aktuelle Munition im Magazin auf die maximale Munition zu Beginn        
-        playerInventory = FindObjectOfType<PlayerInventory>(); //Finde das PlayerInventory, um Nachladen zu können, nachdem die Muni leer ist
+        playerInventory = FindObjectOfType<PlayerInventory>(); // Finde das PlayerInventory, um Nachladen zu können, nachdem die Muni leer ist
+
+        audioSource = GetComponent<AudioSource>(); // Hole das AudioSource-Component
     }
 
     public virtual void Shoot()
@@ -68,10 +74,20 @@ public class BaseWeapon : MonoBehaviour
 
             currentAmmo--; // Verringere die aktuelle Munition im Magazin nach dem Schießen
             UpdateAmmoUI(); // Aktualisieren Sie die Munition im UI nach dem Schuss
+
+            PlayShootSound(); // Spiele den Schuss-Sound ab
         }
     }
 
-    //Getter und Setter für meinen PlayerController
+    private void PlayShootSound()
+    {
+        if (shootSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(shootSound); // Spiele den Schuss-Sound ab
+        }
+    }
+
+    // Getter und Setter für meinen PlayerController
     public bool IsReloading()
     {
         return isReloading;
@@ -87,23 +103,21 @@ public class BaseWeapon : MonoBehaviour
         get { return magazineCapacity; }
     }
 
-
     public IEnumerator Reload(PlayerInventory playerInventory)
     {
         int totalAmmo = playerInventory.GetAmmoBullets();
         if (totalAmmo <= 0)
         {
-            //Debug.Log("Out of Ammo!");
+            // Debug.Log("Out of Ammo!");
             yield break; // Kein Nachladen möglich, wenn keine Gesamtmunition vorhanden ist
         }
 
         isReloading = true; // Setzt den Zustand auf "Nachladen"
-        //Debug.Log("Reloading...");
+        // Debug.Log("Reloading...");
 
         yield return new WaitForSeconds(reloadTime); // Wartet für die Dauer der Nachladezeit
 
         int ammoNeeded = magazineCapacity - currentAmmo; // Berechne, wie viele Kugeln zum Auffüllen des Magazins benötigt werden
-
 
         if (totalAmmo >= ammoNeeded)
         {
@@ -120,7 +134,6 @@ public class BaseWeapon : MonoBehaviour
         UpdateAmmoUI(); // Aktualisieren Sie die Munition im UI nach dem Nachladen
     }
 
-
     private void UpdateAmmoUI()
     {
         AmmoCountUI ammoUI = FindObjectOfType<AmmoCountUI>();
@@ -130,4 +143,3 @@ public class BaseWeapon : MonoBehaviour
         }
     }
 }
-    
