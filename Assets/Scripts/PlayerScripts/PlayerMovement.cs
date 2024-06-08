@@ -12,10 +12,17 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private bool isGrounded;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator-Komponente fehlt am Player-GameObject");
+        }
     }
 
     void Update()
@@ -44,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         // Normiere den Bewegungsvektor, um gleichmäßige Bewegung zu gewährleisten
         moveDirection.Normalize();
 
-        // Überprüfe, ob die Umschalttaste gedrückt ist, und verdopple die Geschwindigkeit
+        // Shift drücken zum rennen
         float currentSpeed = speed;
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
@@ -53,6 +60,16 @@ public class PlayerMovement : MonoBehaviour
 
         // Bewege den Spieler basierend auf der Bewegungsrichtung und der Geschwindigkeit
         transform.position += moveDirection * currentSpeed * Time.deltaTime;
+
+        // Animator
+        if (moveDirection != Vector3.zero)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
 
         // Überprüfe, ob die Sprungtaste gedrückt ist und der Spieler am Boden ist, und springe dann
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
