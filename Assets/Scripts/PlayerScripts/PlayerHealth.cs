@@ -67,7 +67,7 @@ public class PlayerHealth : MonoBehaviour
         xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.5f); // XP für das nächste Level erhöhen
         maxHealth += 20; // Erhöht die maximale Gesundheit bei einem Level-Up
         currentHealth = maxHealth; // Setzt die Gesundheit auf den neuen Maximalwert
-        Debug.Log("Level Up! Current Level: " + currentLevel);
+        //Debug.Log("Level Up! Current Level: " + currentLevel);
     }
 
 
