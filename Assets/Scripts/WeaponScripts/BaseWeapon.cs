@@ -14,7 +14,7 @@ public class BaseWeapon : MonoBehaviour
     [SerializeField] protected float reloadTime;
     //[SerializeField] protected int totalAmmo;
 
-    protected bool isReloading = false; // Gibt an, ob die Waffe gerade nachlädt
+    protected bool isReloading = false; //Gibt an, ob die Waffe gerade nachlädt
     protected float nextTimeToFire = 0f;
 
     protected PlayerInventory playerInventory;

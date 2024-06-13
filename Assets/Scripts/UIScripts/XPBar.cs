@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class XPBar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Slider xpbar;
+
+    private PlayerHealth playerXP;
+
+    private void Start()
     {
-        
+        playerXP = GetComponent<PlayerHealth>();
+        if (playerXP != null)
+        {
+            xpbar.maxValue = playerXP.GetXPToNextLevel(); // Setzt den Maximalwert des Sliders
+            playerXP.OnXPChanged += UpdateXPBar;
+            UpdateXPBar(playerXP.GetCurrentXP(), playerXP.GetXPToNextLevel());
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateXPBar(int currentXP, int xpToNextLevel)
     {
-        
+        if (playerXP != null)
+        {
+            xpbar.value = currentXP;
+            xpbar.maxValue = xpToNextLevel; // Aktualisiert den Maximalwert des Sliders nach einem Level-Up
+        }
     }
 }

@@ -11,9 +11,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int currentXP = 0;
     [SerializeField] private int xpToNextLevel = 100;
 
-
-    //Events
+    // Events
     public event Action<int, int> OnHealthChanged;
+    public event Action<int, int> OnXPChanged;
 
     void Start()
     {
@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
 
         // Events
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        OnXPChanged?.Invoke(currentXP, xpToNextLevel);
     }
 
     public void TakeDamage(int damage)
@@ -41,9 +42,9 @@ public class PlayerHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public int GetCurrentHealth() 
-    { 
-        return currentHealth; 
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 
     public int GetMaxHealth()
@@ -54,10 +55,21 @@ public class PlayerHealth : MonoBehaviour
     public void GainXP(int amount)
     {
         currentXP += amount;
+        OnXPChanged?.Invoke(currentXP, xpToNextLevel);
         if (currentXP >= xpToNextLevel)
         {
             LevelUp();
         }
+    }
+
+    public int GetCurrentXP()
+    {
+        return currentXP;
+    }
+
+    public int GetXPToNextLevel()
+    {
+        return xpToNextLevel;
     }
 
     void LevelUp()
@@ -67,9 +79,9 @@ public class PlayerHealth : MonoBehaviour
         xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.5f); // XP für das nächste Level erhöhen
         maxHealth += 20; // Erhöht die maximale Gesundheit bei einem Level-Up
         currentHealth = maxHealth; // Setzt die Gesundheit auf den neuen Maximalwert
+        OnXPChanged?.Invoke(currentXP, xpToNextLevel); // Aktualisiere die XP-Bar nach dem Level-Up
         //Debug.Log("Level Up! Current Level: " + currentLevel);
     }
-
 
     public void Heal(int amount)
     {
@@ -81,8 +93,7 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
-
-    //Methode, die den aktuellen und maximalen Gesundheitswert zurückgibt
+    // Methode, die den aktuellen und maximalen Gesundheitswert zurückgibt
     public (int, int) GetHealthStatus()
     {
         return (currentHealth, maxHealth);
