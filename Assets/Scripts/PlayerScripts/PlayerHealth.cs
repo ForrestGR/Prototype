@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int currentLevel = 1;
     [SerializeField] private int currentXP = 0;
     [SerializeField] private int xpToNextLevel = 100;
+    [SerializeField] private GameOverManager gameOverManager;
 
     // Events
     public event Action<int, int> OnHealthChanged;
@@ -39,7 +40,8 @@ public class PlayerHealth : MonoBehaviour
     {
         // Implementiere, was passiert, wenn der Spieler stirbt
         Debug.Log("Player died!");
-        Destroy(gameObject);
+        gameOverManager.ShowGameOverScreen();
+        //Destroy(gameObject);
     }
 
     public int GetCurrentHealth()
