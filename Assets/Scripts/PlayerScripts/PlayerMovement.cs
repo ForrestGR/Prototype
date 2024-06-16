@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5f; // Sprungkraft des Spielers
     public float groundCheckDistance = 0.1f; // Distanz zur Überprüfung, ob der Spieler den Boden berührt
     public LayerMask groundLayer; // LayerMask zur Bestimmung, welche Layer als Boden gelten
+    public bool isWalking;
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -17,12 +18,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
-
-        if (animator == null)
-        {
-            Debug.LogError("Animator-Komponente fehlt am Player-GameObject");
-        }
+        //animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -48,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             moveDirection += Vector3.right;
         }
 
-        // Normiere den Bewegungsvektor, um gleichmäßige Bewegung zu gewährleisten
+        // Normiere den Bewegungsvektor, um gleichmäßige Bewegung zu gewährleistenwX
         moveDirection.Normalize();
 
         // Shift drücken zum rennen
@@ -64,11 +60,11 @@ public class PlayerMovement : MonoBehaviour
         // Animator
         if (moveDirection != Vector3.zero)
         {
-            animator.SetBool("isWalking", true);
+            isWalking = true;
         }
         else
         {
-            animator.SetBool("isWalking", false);
+            isWalking = false;
         }
 
         // Überprüfe, ob die Sprungtaste gedrückt ist und der Spieler am Boden ist, und springe dann
@@ -94,5 +90,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public bool IsWalking()
+    {
+        return isWalking;
     }
 }
