@@ -9,6 +9,10 @@ public class GameOverManager : MonoBehaviour
 
     void Start()
     {
+        if (gameOverScreen == null || restartButton == null)
+        {
+            Debug.LogError("GameOverScreen or RestartButton is not assigned in the inspector!");
+        }
         gameOverScreen.SetActive(false); // Verstecke den Game Over Screen zu Beginn des Spiels
         restartButton.onClick.AddListener(RestartGame);
     }
@@ -16,6 +20,7 @@ public class GameOverManager : MonoBehaviour
     public void ShowGameOverScreen()
     {
         gameOverScreen.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     void RestartGame()

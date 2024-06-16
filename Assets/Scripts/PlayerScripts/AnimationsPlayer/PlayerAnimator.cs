@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     private const string IS_WALKING = "IsWalking"; // Korrigierter Parametername
+   private const string IS_RUNNING = "IsRunning"; // Korrigierter Parametername
 
     private PlayerMovement player; 
     private Animator animator;
@@ -33,6 +34,8 @@ public class PlayerAnimator : MonoBehaviour
         {
             bool isWalking = player.IsWalking();
             animator.SetBool(IS_WALKING, isWalking);
+            //bool isRunning = player.isRunning();
+            //animator.SetBool(IS_RUNNING, isRunning);
         }
     }
 }

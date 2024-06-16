@@ -38,10 +38,15 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        // Implementiere, was passiert, wenn der Spieler stirbt
         Debug.Log("Player died!");
-        gameOverManager.ShowGameOverScreen();
-        //Destroy(gameObject);
+        if (gameOverManager != null)
+        {
+            gameOverManager.ShowGameOverScreen();
+        }
+        else
+        {
+            Debug.LogError("GameOverManager is not assigned or not found!");
+        }
     }
 
     public int GetCurrentHealth()

@@ -10,10 +10,11 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckDistance = 0.1f; // Distanz zur Überprüfung, ob der Spieler den Boden berührt
     public LayerMask groundLayer; // LayerMask zur Bestimmung, welche Layer als Boden gelten
     public bool isWalking;
+    public bool isRunning;
 
     private Rigidbody rb;
     private bool isGrounded;
-    private Animator animator;
+    
 
     void Start()
     {
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Überprüfe, welche Tasten gedrückt sind, und aktualisiere die Bewegungsrichtung entsprechend
         if (Input.GetKey(KeyCode.W))
-        {
+        {           
             moveDirection += Vector3.forward;
         }
         if (Input.GetKey(KeyCode.S))
@@ -52,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             currentSpeed *= 2f;
+            isRunning = true;
+        } else
+        {
+            isRunning = false;
         }
 
         // Bewege den Spieler basierend auf der Bewegungsrichtung und der Geschwindigkeit

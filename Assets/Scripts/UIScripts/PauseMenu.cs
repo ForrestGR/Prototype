@@ -1,18 +1,42 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
-    public GameObject pauseMenuUI;
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button quitButton;
+    [SerializeField] private Button mainMenuButton;
 
     void Start()
     {
-        // Stelle sicher, dass das Pausenmenü zu Beginn deaktiviert ist
+        if (pauseMenuUI == null)
+        {
+            Debug.LogError("PauseMenuUI is not assigned in the inspector!");
+        }
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
         Time.timeScale = 1f; // Sicherstellen, dass das Spiel normal läuft
+
+
+        // Event-Listener für die Buttons hinzufügen
+        if (resumeButton != null)
+        {
+            resumeButton.onClick.AddListener(Resume);
+        }
+
+        if (quitButton != null)
+        {
+            quitButton.onClick.AddListener(QuitGame);
+        }
+
+        if (mainMenuButton != null)
+        {
+            mainMenuButton.onClick.AddListener(LoadMenu);
+        }
     }
 
     void Update()
@@ -39,7 +63,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
-        pauseMenuUI.SetActive(true);
+        pauseMenuUI.SetActive(true);    
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
