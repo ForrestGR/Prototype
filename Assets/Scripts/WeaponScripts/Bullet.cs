@@ -35,6 +35,17 @@ public class Bullet : MonoBehaviour
             monsterHealth.TakeDamage(damage);  // Beispiel-Schaden
         }
 
+
+        HealthGhost healthGhost = other.GetComponent<HealthGhost>();
+
+        if (healthGhost != null)
+        {
+            healthGhost.TakeDamage(damage);
+        }
+
+
+
         Destroy(gameObject);  // Zerstört die Kugel nach der Kollision
+
     }
 }
