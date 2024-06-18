@@ -10,6 +10,8 @@ public class HealthGhost : MonoBehaviour
     private bool isDead = false;
 
     public delegate void GhostDestroyed(GameObject ghost);
+
+    //Event
     public event GhostDestroyed OnDestroyed;
 
 
