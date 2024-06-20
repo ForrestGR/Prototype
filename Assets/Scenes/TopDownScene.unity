@@ -798,7 +798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1224292a43d614284674a6bf001071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: FPS
+  sceneName: FPSScene
 --- !u!114 &187735914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,7 +1402,7 @@ GameObject:
   - component: {fileID: 493225393}
   - component: {fileID: 493225392}
   m_Layer: 0
-  m_Name: MenuManager
+  m_Name: MenuManagerDDOL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1865,7 +1865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19588385245968726, guid: 7495e0264b70aaa44bb0cefb2a54d015, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 796652407307068396, guid: 7495e0264b70aaa44bb0cefb2a54d015, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4563,12 +4563,12 @@ GameObject:
   - component: {fileID: 1207833409}
   - component: {fileID: 1207833410}
   m_Layer: 0
-  m_Name: MusicPlayer
+  m_Name: MusicPlayerold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1207833409
 Transform:
   m_ObjectHideFlags: 0

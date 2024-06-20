@@ -11,7 +11,7 @@ public class SceneChangerDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(sceneName);  
         }
     }
 }

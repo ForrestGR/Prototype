@@ -11,11 +11,21 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button quitButton;
 
+    public AudioClip sceneMusic;
+
+    private void Start()
+    {
+        if (sceneMusic != null)
+        {
+            MusicManager.Instance.PlayMusic(sceneMusic);
+        }
+    }
+
 
     private void Awake()
     {
         playButton.onClick.AddListener(() => {
-            Loader.Load(Loader.Scene.GameScene);
+            Loader.Load(Loader.Scene.TopDownScene);
         });
         quitButton.onClick.AddListener(() => {
             Application.Quit();

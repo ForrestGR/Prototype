@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangerButton : MonoBehaviour
 {
-    public string sceneName = "FPS";
+    public string sceneName = "FPSScene";
 
     private void OnTriggerEnter(Collider other)
     {
