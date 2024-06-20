@@ -1,18 +1,89 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieAI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Transform player;
+    [SerializeField] private float detectionRange = 10.0f;
+    [SerializeField] private float idleSpeed = 10;
+    [SerializeField] private float followingSpeed = 10;
+    [SerializeField] private float walkingSpeed = 10;
+
+    private bool isFollowing;
+    private bool isWalking;
+
+
+    private NavMeshAgent agent;
+    private Animator animator;
+
     void Start()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
-    {
+    {        
+        follow();
+        attack();
+        die();
+    }
+
         
+    private void follow()
+    {
+        float distanceToPlayer = Vector3.Distance(player.position, transform.position);
+
+        if (distanceToPlayer <= detectionRange)
+        {
+            agent.SetDestination(player.position);
+            isFollowing = true;
+            agent.speed = followingSpeed;
+            lookAtPlayer();
+        }
+        else
+        {
+            agent.ResetPath();
+            isFollowing = false;
+        }
+
+        isWalking = agent.velocity.magnitude > 0.1f;
+    }
+
+
+    private void attack()
+    {
+
+    }
+
+
+    private void die()
+    {
+
+    }
+
+
+    private void lookAtPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * agent.angularSpeed);
+    }
+
+    private void UpdateAnimatorParameters()
+    {
+        animator.SetBool("isFollowing", isFollowing);
+        animator.SetBool("isWalking", isWalking);
+    }
+
+    // Methode zum Zeichnen der Gizmos
+    void OnDrawGizmosSelected()
+    {
+        // Farbe für die Erkennungsreichweite setzen
+        Gizmos.color = Color.red;
+        // Kugel um den Zombie zeichnen, um die Erkennungsreichweite darzustellen
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }
