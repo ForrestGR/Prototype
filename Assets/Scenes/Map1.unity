@@ -16758,6 +16758,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1540393423555069709, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
+      propertyPath: MaxDistance
+      value: 28.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540393423555069709, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2442596837686906313, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
       propertyPath: wanderSounds.Array.size
       value: 2
