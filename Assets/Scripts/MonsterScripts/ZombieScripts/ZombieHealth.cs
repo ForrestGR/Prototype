@@ -8,6 +8,7 @@ public class ZombieHealth : MonoBehaviour
     [SerializeField] private float currentHealth;   
     [SerializeField] private float deathDelay = 4f;
 
+    //private bool isFollowing;
     private bool isDying = false;
 
     private NavMeshAgent navMeshAgent;
@@ -25,14 +26,14 @@ public class ZombieHealth : MonoBehaviour
         currentHealth -= amount; // Reduziere die Gesundheit um den angegebenen Betrag
 
         if (currentHealth <= 0f && !isDying)
-        {
-            
+        {            
             StartCoroutine(Die()); // Starte die Die-Coroutine
         }
     }
 
     private IEnumerator Die()
     {
+        //isFollowing = false;
         isDying = true;
         
         UpdateAnimatorParameters();
@@ -46,6 +47,7 @@ public class ZombieHealth : MonoBehaviour
     private void UpdateAnimatorParameters()
     {
         animator.SetBool("isDieing", isDying);
+        //animator.SetBool("isFollowing", isFollowing);
     }
 
     private void StopAllMovement()

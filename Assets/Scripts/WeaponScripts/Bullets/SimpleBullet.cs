@@ -4,13 +4,13 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 20f;
     public float damage = 10f;
-    public float lifeTime = 2f; // Wie lange das Projektil existiert, bevor es zerstört wird
+    public float lifeTime = 2f;
 
     private ZombieHealth zombieHealth;
 
     void Start()
     {
-        Destroy(gameObject, lifeTime); // Zerstört das Projektil nach der angegebenen Lebensdauer
+        Destroy(gameObject, lifeTime);
     }
 
     void Update()
