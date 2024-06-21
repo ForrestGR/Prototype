@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2896298074104737795}
   - component: {fileID: 3084997691877176668}
   - component: {fileID: 2341223958772822263}
+  - component: {fileID: 9147952892883956207}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Player
@@ -209,6 +210,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6336017695995806487, guid: 551939aedbf0b824caba281aa800a5ba, type: 3}
   firePoint: {fileID: 8797105457528437786}
+--- !u!114 &9147952892883956207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230618327171503702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b814fc3d5ba26554988b2eea03238cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4175902101330727933
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 6606221386958528541}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -4,8 +4,8 @@ using UnityEngine.AI;
 
 public class ZombieHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 100f; // Maximale Gesundheit des Zombies
-    [SerializeField] private float currentHealth;   // Aktuelle Gesundheit des Zombies
+    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float currentHealth;   
     [SerializeField] private float deathDelay = 4f;
 
     private bool isDying = false;
@@ -13,7 +13,7 @@ public class ZombieHealth : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Animator animator;
 
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth; // Setze die aktuelle Gesundheit auf die maximale Gesundheit beim Start
         animator = GetComponent<Animator>();

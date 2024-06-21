@@ -11,11 +11,16 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] private float followingSpeed = 10;
     [SerializeField] private float walkingSpeed = 10;
     [SerializeField] private float attackDistance = 2;
+    [SerializeField] private float zombieDamage = 10;
+    [SerializeField] private float attackCooldown = 2.0f;
+
+    private float lastAttackTime;
 
     private bool isFollowing;
     private bool isWalking;
     private bool isAttacking;
 
+    private FPSPlayerHealth fpsPlayerHealth;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -24,13 +29,15 @@ public class ZombieAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        
+
     }
 
     void Update()
     {        
         follow();
-        attack();
-        die();
+        Attack();
         Debug.Log("is follwing" + isFollowing);
         Debug.Log("is attacking" + isAttacking);
     }
@@ -58,14 +65,20 @@ public class ZombieAI : MonoBehaviour
     }
 
 
-    private void attack()
+    //Angriffs und DeamDamage Methode
+    private void Attack()
     {
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
         if (distanceToPlayer < attackDistance) 
         {
-            dealDamage();
-            isAttacking = true;            
+            isAttacking = true;
+
+            if (Time.time >= lastAttackTime + attackCooldown)
+            {
+                DealDamage();
+                lastAttackTime = Time.time; // Update the last attack time
+            }
         }
         else
         {
@@ -74,17 +87,18 @@ public class ZombieAI : MonoBehaviour
         UpdateAnimatorParameters();
     }
 
-
-    private void die()
+    //DealDamage Methode für Attack();
+    private void DealDamage()
     {
+        fpsPlayerHealth = player.GetComponent<FPSPlayerHealth>();
 
+        if (fpsPlayerHealth != null )
+        {
+            fpsPlayerHealth.TakeDamage(zombieDamage);
+        }
     }
 
-    private void dealDamage()
-    {
-
-    }
-
+    //Den Spieler angucken beim verfolgen
     private void lookAtPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
@@ -92,12 +106,14 @@ public class ZombieAI : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * agent.angularSpeed);
     }
 
+    //Animator Updates
     private void UpdateAnimatorParameters()
     {
         animator.SetBool("isFollowing", isFollowing);
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isAttacking", isAttacking);
     }
+
 
     // Methode zum Zeichnen der Gizmos
     void OnDrawGizmosSelected()
