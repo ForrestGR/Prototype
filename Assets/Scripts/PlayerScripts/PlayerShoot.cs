@@ -35,33 +35,3 @@ public class PlayerShoot : MonoBehaviour
 }
 
 
-
-
-
-//public class PlayerShoot : MonoBehaviour
-//{
-//    private PlayerController playerController;
-
-//    void Start()
-//    {
-//        // Referenz zum PlayerController abrufen
-//        playerController = GetComponent<PlayerController>();
-//    }
-
-//    void Update()
-//    {
-//        if (playerController.currentWeapon != null)
-//        {
-//            // Hier könnte man sicherstellen, dass die Waffe tatsächlich ein AK47Shoot-Skript hat
-//            AK47Shoot weaponShoot = playerController.currentWeapon.GetComponent<AK47Shoot>();
-//            if (weaponShoot != null)
-//            {
-//                weaponShoot.Update();
-//            }
-//        }
-//    }
-//}
-
-
-
-

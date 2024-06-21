@@ -10,9 +10,11 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] private float idleSpeed = 10;
     [SerializeField] private float followingSpeed = 10;
     [SerializeField] private float walkingSpeed = 10;
+    [SerializeField] private float attackDistance = 2;
 
     private bool isFollowing;
     private bool isWalking;
+    private bool isAttacking;
 
 
     private NavMeshAgent agent;
@@ -29,14 +31,17 @@ public class ZombieAI : MonoBehaviour
         follow();
         attack();
         die();
+        Debug.Log("is follwing" + isFollowing);
+        Debug.Log("is attacking" + isAttacking);
     }
 
         
     private void follow()
     {
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
+        Debug.Log(distanceToPlayer);
 
-        if (distanceToPlayer <= detectionRange)
+        if (distanceToPlayer <= detectionRange && distanceToPlayer >= attackDistance)
         {
             agent.SetDestination(player.position);
             isFollowing = true;
@@ -48,14 +53,25 @@ public class ZombieAI : MonoBehaviour
             agent.ResetPath();
             isFollowing = false;
         }
-
+        UpdateAnimatorParameters();
         isWalking = agent.velocity.magnitude > 0.1f;
     }
 
 
     private void attack()
     {
+        float distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
+        if (distanceToPlayer < attackDistance) 
+        {
+            dealDamage();
+            isAttacking = true;            
+        }
+        else
+        {
+            isAttacking = false;            
+        }
+        UpdateAnimatorParameters();
     }
 
 
@@ -64,6 +80,10 @@ public class ZombieAI : MonoBehaviour
 
     }
 
+    private void dealDamage()
+    {
+
+    }
 
     private void lookAtPlayer()
     {
@@ -76,6 +96,7 @@ public class ZombieAI : MonoBehaviour
     {
         animator.SetBool("isFollowing", isFollowing);
         animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isAttacking", isAttacking);
     }
 
     // Methode zum Zeichnen der Gizmos

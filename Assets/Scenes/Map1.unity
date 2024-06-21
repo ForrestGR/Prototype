@@ -4912,7 +4912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2678917da50518140b0a977e717da360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1761424189}
+  playerPrefab: {fileID: 0}
   spawnPoint: {fileID: 768280502}
 --- !u!4 &426785760
 Transform:
@@ -4922,14 +4922,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426785758}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -2.0292716, y: 2.1735015, z: 0.22237422}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 768280502}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &438922782 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012589328442, guid: 231f567299ef5844f8dca0461bf7a80b, type: 3}
@@ -16755,20 +16755,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2831362871762576854, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1761424190}
     - target: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
       propertyPath: m_Name
       value: Zombie1
       objectReference: {fileID: 0}
+    - target: {fileID: 5217392391908853223, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
+      propertyPath: deathDelay
+      value: 66.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1958689618}
-    - targetCorrespondingSourceObject: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1958689619}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
 --- !u!1001 &1390640263
 PrefabInstance:
@@ -21764,19 +21766,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3230618327171503702, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
       propertyPath: m_Name
-      value: FirstPersonController
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7984080254805934621, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0811625
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7984080254805934621, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.56
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7984080254805934621, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.18494117
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7984080254805934621, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21806,14 +21808,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8797105457528437786, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797105457528437786, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
---- !u!1 &1761424189 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3230618327171503702, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
+--- !u!4 &1761424190 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7984080254805934621, guid: c0c645d203956fe419a48e3c013d9961, type: 3}
   m_PrefabInstance: {fileID: 1761424188}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1762919713
@@ -24835,59 +24845,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000012506713666, guid: 58d97d456aead63499ac7d5316541f78, type: 3}
   m_PrefabInstance: {fileID: 1956932182}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1958689615 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
-  m_PrefabInstance: {fileID: 1377280591}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1958689618
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1958689615}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.12, y: 2.72, z: 1}
-  m_Center: {x: 0, y: 1.37, z: 0}
---- !u!54 &1958689619
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1958689615}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1965538943
 PrefabInstance:
   m_ObjectHideFlags: 0
