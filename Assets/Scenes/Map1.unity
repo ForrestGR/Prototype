@@ -16765,7 +16765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5217392391908853223, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
       propertyPath: deathDelay
-      value: 66.3
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6453347486466581194, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
