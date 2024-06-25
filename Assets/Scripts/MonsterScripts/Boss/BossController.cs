@@ -66,6 +66,7 @@ public class BossController : MonoBehaviour
         // Implement phase 3 attack patterns
     }
 
+
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
