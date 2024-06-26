@@ -43,6 +43,12 @@ public class Bullet : MonoBehaviour
             healthGhost.TakeDamage(damage);
         }
 
+        BossHealth bossHealth = other.GetComponent<BossHealth>();
+
+        if (bossHealth != null) 
+        { 
+            bossHealth.TakeDamage(damage);
+        }
 
 
         Destroy(gameObject);  // Zerstört die Kugel nach der Kollision

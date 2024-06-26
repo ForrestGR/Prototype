@@ -981,18 +981,6 @@ PrefabInstance:
       value: Albino
       objectReference: {fileID: 0}
     - target: {fileID: 458774, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 458774, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 458774, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 458774, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
       objectReference: {fileID: 0}
@@ -1032,14 +1020,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 458774, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
+    - target: {fileID: 5437833415189398452, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1707051224}
+    - target: {fileID: 5437833415189398452, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
+      propertyPath: maxHealth
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100720, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 741880200}
   m_SourcePrefab: {fileID: 100100000, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
 --- !u!1 &241329411
 GameObject:
@@ -3163,6 +3158,32 @@ Transform:
   - {fileID: 712890117}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &741880196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100720, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
+  m_PrefabInstance: {fileID: 230964555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &741880200
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741880196}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.93, y: 6.87, z: 6.17}
+  m_Center: {x: 0, y: 3.55, z: 0}
 --- !u!1 &766262544
 GameObject:
   m_ObjectHideFlags: 0
@@ -5422,7 +5443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8679245, g: 0.06332592, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7466,7 +7487,7 @@ GameObject:
   - component: {fileID: 1707051223}
   - component: {fileID: 1707051224}
   m_Layer: 5
-  m_Name: BossHealth
+  m_Name: BossHealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7481,7 +7502,7 @@ RectTransform:
   m_GameObject: {fileID: 1707051222}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.625, y: 0.625, z: 0.625}
+  m_LocalScale: {x: 1.6400001, y: 3.92, z: 1.6400001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 691496030}
@@ -7490,7 +7511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300.1787, y: 332.09998}
+  m_AnchoredPosition: {x: 300.1787, y: -256.72424}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1707051224
@@ -7540,7 +7561,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
