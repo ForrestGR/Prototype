@@ -17,7 +17,7 @@ public abstract class BaseMonsterAI : MonoBehaviour
     {
         if (player == null)
         {
-            Debug.LogError("Player reference is not assigned in BaseMonsterAI script.");
+            //Debug.LogError("Player reference is not assigned in BaseMonsterAI script.");
             return;
         }
 

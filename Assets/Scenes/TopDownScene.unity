@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18012473, g: 0.22552383, b: 0.30682486, a: 1}
+  m_IndirectSpecularColor: {r: 0.18011841, g: 0.22551452, b: 0.30682036, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1052,6 +1052,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100720, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
       insertIndex: -1
       addedObject: {fileID: 741880200}
+    - targetCorrespondingSourceObject: {fileID: 100720, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 741880201}
   m_SourcePrefab: {fileID: 100100000, guid: 91b2b4fea3afcb048a1f52e278ffc257, type: 3}
 --- !u!1 &241329411
 GameObject:
@@ -3201,6 +3204,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.93, y: 6.87, z: 6.17}
   m_Center: {x: 0, y: 3.55, z: 0}
+--- !u!114 &741880201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741880196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777493deb3269f4fa353e77a7e57b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &766262544
 GameObject:
   m_ObjectHideFlags: 0
@@ -4263,6 +4278,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4950023438556497599, guid: 9b75c5d748b9fa84a84650b153405559, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 109792144}
     - target: {fileID: 4950023438556497599, guid: 9b75c5d748b9fa84a84650b153405559, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -9532,7 +9551,7 @@ SceneRoots:
   - {fileID: 1109108069}
   - {fileID: 2129027474}
   - {fileID: 493225393}
-  - {fileID: 230964555}
   - {fileID: 766262548}
   - {fileID: 1497620100}
+  - {fileID: 230964555}
   - {fileID: 1666975401}
