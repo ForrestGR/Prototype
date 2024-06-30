@@ -7,23 +7,26 @@ public class BossStateManager : MonoBehaviour
 
     BossBaseState currentState;
 
+    public BossDetectionState detectionState = new BossDetectionState();
     public BossPhase1State phase1State = new BossPhase1State();
     public BossPhase2State phase2State = new BossPhase2State();
 
     private BossHealth bossHealth;
+    private Transform player;
+
+    [SerializeField] public float detectionRange = 10f;
 
 
     void Start()
     {
         bossHealth = GetComponent<BossHealth>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         //Starting state for the stsate machine
-        currentState = phase1State;
+        currentState = detectionState;
 
         //"this" is a reference to the context (this EXACT monobrhavior script)
-        currentState.EnterState(this);
-
-        
+        currentState.EnterState(this); 
     }
 
 
@@ -48,5 +51,10 @@ public class BossStateManager : MonoBehaviour
     public void SetBossHealth(BossHealth health)
     {
         bossHealth = health;
+    }
+
+    public Transform GetPlayer()
+    {
+        return player;
     }
 }

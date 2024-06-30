@@ -6,11 +6,16 @@ public class BossPhase1State : BossBaseState
 {
 
     private BossHealth bossHealth;
+    private Animator animator;
 
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Phase 1 start");
-        bossHealth = boss.GetBossHealth(); 
+        bossHealth = boss.GetBossHealth();
+        animator = boss.GetComponent<Animator>();
+
+        // Play the start animation
+        animator.SetTrigger("StartBossFight");
     }
 
 
@@ -21,6 +26,10 @@ public class BossPhase1State : BossBaseState
         {
             boss.SwitchState(boss.phase2State);
         }
+
+
+
+
     }
 
 

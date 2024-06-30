@@ -68,4 +68,9 @@ public class BossHealth : MonoBehaviour
         set { currenHealth = value; }
     }
 
+    public float DetectionRange
+    {
+        get { return detectionRange; }
+    }
+
 }
