@@ -6,16 +6,21 @@ public class BossPhase2State : BossBaseState
 {
     public override void EnterState(BossStateManager boss)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("hello from phase 2");
     }
+
+
+    public override void UpdateState(BossStateManager boss)
+    {
+        Debug.Log("Phase 2 update");
+    }
+
+
+
 
     public override void ExitState(BossStateManager boss)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void UpdateState(BossStateManager boss)
-    {
-        throw new System.NotImplementedException();
-    }
 }

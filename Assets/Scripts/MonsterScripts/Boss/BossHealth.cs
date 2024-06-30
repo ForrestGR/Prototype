@@ -53,4 +53,19 @@ public class BossHealth : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 
+
+
+
+    public float MaxHealth
+    {
+        get { return maxHealth; }
+        set { maxHealth = value; }
+    }
+
+    public float CurrentHealth
+    {
+        get { return currenHealth; }
+        set { currenHealth = value; }
+    }
+
 }
