@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossDetectionState : BossBaseState
+public class DetectionState : BossBaseState
 {
     private Transform player;
-
 
     public override void EnterState(BossStateManager boss)
     {
@@ -23,11 +22,8 @@ public class BossDetectionState : BossBaseState
         }
     }
 
-
     public override void ExitState(BossStateManager boss)
     {
         //throw new System.NotImplementedException();
     }
-
-
 }

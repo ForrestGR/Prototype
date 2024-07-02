@@ -7,9 +7,16 @@ public class BossStateManager : MonoBehaviour
 
     BossBaseState currentState;
 
-    public BossDetectionState detectionState = new BossDetectionState();
-    public BossPhase1State phase1State = new BossPhase1State();
-    public BossPhase2State phase2State = new BossPhase2State();
+    public DetectionState detectionState = new DetectionState();
+    public Phase1State phase1State = new Phase1State();
+    public Phase2State phase2State = new Phase2State();
+
+    //Action States
+    public IdleState idleState = new IdleState();
+    public MoveState moveState = new MoveState();
+    public Attack1State attack1State = new Attack1State();
+    public Attack2State attack2State = new Attack2State();
+
 
     private BossHealth bossHealth;
     private Transform player;
