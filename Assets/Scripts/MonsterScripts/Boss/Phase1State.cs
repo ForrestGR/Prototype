@@ -6,6 +6,7 @@ public class Phase1State : BossBaseState
 {
     private BossHealth bossHealth;
     private Animator animator;
+
     private float actionCooldown = 2.0f; // Zeit zwischen den Aktionen
     private float nextActionTime = 0.0f;
 
@@ -22,6 +23,7 @@ public class Phase1State : BossBaseState
         if (bossHealth != null && bossHealth.CurrentHealth <= bossHealth.MaxHealth * 0.5f)
         {
             boss.SwitchState(boss.phase2State);
+            return; // Verhindert, dass weitere Aktionen ausgeführt werden
         }
 
         // Führe zufällige Aktionen aus, wenn die Zeit dafür gekommen ist

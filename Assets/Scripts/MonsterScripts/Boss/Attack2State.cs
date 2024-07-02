@@ -22,7 +22,8 @@ public class Attack2State : BossBaseState
         idleTimer = 0f; // Reset the timer
     }
 
-    public override void ExitState(BossStateManager boss)
+
+    public override void UpdateState(BossStateManager boss)
     {
         idleTimer += Time.deltaTime;
         if (idleTimer >= idleDuration)
@@ -32,8 +33,11 @@ public class Attack2State : BossBaseState
         }
     }
 
-    public override void UpdateState(BossStateManager boss)
+
+    public override void ExitState(BossStateManager boss)
     {
-        
+
     }
+
+
 }

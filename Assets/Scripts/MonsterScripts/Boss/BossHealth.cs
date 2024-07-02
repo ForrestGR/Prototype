@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,35 +7,46 @@ using UnityEngine.UI;
 
 public class BossHealth : MonoBehaviour
 {
+    //Variables
     [SerializeField] private float maxHealth;
-    [SerializeField] private float currenHealth;
-    [SerializeField] Slider healthBar;
+    [SerializeField] private float currentHealth;
     [SerializeField] private float detectionRange;
+
+    [SerializeField] Slider healthBar;
 
     private Animator animator;
 
+    //Event
+    public event Action OnHealthBelowThreshold;
+
+    //Getter&Setter
+    //public float CurrentHealth { get; private set; }
 
     private void Start()
     {
-        currenHealth = maxHealth;
+        currentHealth = maxHealth;
         animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        healthBar.value = currenHealth;
-        
-        if (currenHealth <= maxHealth*0.5)
-        {
-            animator.SetTrigger("stageTwo");
-        }
+        healthBar.value = currentHealth;
     }
 
     public void TakeDamage(float amount)
     {
-        currenHealth -= amount;
+        if (currentHealth <= 0) return;
 
-        if (currenHealth <= 0)
+        currentHealth -= amount;
+        healthBar.value = currentHealth;
+
+        if (currentHealth <= maxHealth*0.5)
+        {
+            OnHealthBelowThreshold?.Invoke();
+        }
+
+
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -54,6 +66,11 @@ public class BossHealth : MonoBehaviour
     }
 
 
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+        set { }
+    }
 
 
     public float MaxHealth
@@ -62,11 +79,6 @@ public class BossHealth : MonoBehaviour
         set { maxHealth = value; }
     }
 
-    public float CurrentHealth
-    {
-        get { return currenHealth; }
-        set { currenHealth = value; }
-    }
 
     public float DetectionRange
     {

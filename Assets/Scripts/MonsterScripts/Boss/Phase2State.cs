@@ -31,7 +31,7 @@ public class Phase2State : BossBaseState
 
     public override void ExitState(BossStateManager boss)
     {
-        throw new System.NotImplementedException();
+        
     }
 
 }

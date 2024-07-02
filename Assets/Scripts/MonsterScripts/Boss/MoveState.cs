@@ -18,10 +18,11 @@ public class MoveState : BossBaseState
         navMeshAgent = boss.GetComponent<NavMeshAgent>();
 
         animator.SetTrigger("Walk");
-        moveTimer = 0f; // Reset the timer
+        moveTimer = 0f; //Reset the timer
     }
 
-    public override void ExitState(BossStateManager boss)
+
+    public override void UpdateState(BossStateManager boss)
     {
         moveTimer += Time.deltaTime;
         if (moveTimer >= moveDuration)
@@ -30,8 +31,11 @@ public class MoveState : BossBaseState
         }
     }
 
-    public override void UpdateState(BossStateManager boss)
+
+    public override void ExitState(BossStateManager boss)
     {
-        
+
     }
+
+
 }

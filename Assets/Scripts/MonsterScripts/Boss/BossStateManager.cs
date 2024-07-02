@@ -5,8 +5,9 @@ using UnityEngine;
 public class BossStateManager : MonoBehaviour
 {
 
-    BossBaseState currentState;
+    public BossBaseState currentState;
 
+    //Phase States
     public DetectionState detectionState = new DetectionState();
     public Phase1State phase1State = new Phase1State();
     public Phase2State phase2State = new Phase2State();
@@ -17,15 +18,19 @@ public class BossStateManager : MonoBehaviour
     public Attack1State attack1State = new Attack1State();
     public Attack2State attack2State = new Attack2State();
 
+    //References
     private BossHealth bossHealth;
     private Transform player;
 
+    //Variables
     [SerializeField] public float detectionRange = 10f;
 
 
     void Start()
     {
         bossHealth = GetComponent<BossHealth>();
+        bossHealth.OnHealthBelowThreshold += HandleHealthBelowThreshold;
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         //Starting state for the stsate machine
@@ -39,6 +44,19 @@ public class BossStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+    }
+
+    private void HandleHealthBelowThreshold()
+    {
+        SwitchState(phase2State);
+    }
+
+    private void OnDestroy()
+    {
+        if (bossHealth != null)
+        {
+            bossHealth.OnHealthBelowThreshold -= HandleHealthBelowThreshold;
+        }
     }
 
     public void SwitchState(BossBaseState state)
