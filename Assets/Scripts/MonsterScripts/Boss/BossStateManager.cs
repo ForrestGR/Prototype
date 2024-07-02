@@ -17,7 +17,6 @@ public class BossStateManager : MonoBehaviour
     public Attack1State attack1State = new Attack1State();
     public Attack2State attack2State = new Attack2State();
 
-
     private BossHealth bossHealth;
     private Transform player;
 

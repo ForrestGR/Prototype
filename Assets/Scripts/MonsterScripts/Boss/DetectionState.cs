@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class DetectionState : BossBaseState
 {
+    private Animator animator;
     private Transform player;
 
     public override void EnterState(BossStateManager boss)
     {
+
         Debug.Log("Detection State start");
+        animator = boss.GetComponent<Animator>();
         player = boss.GetPlayer();
     }
 
@@ -18,6 +21,8 @@ public class DetectionState : BossBaseState
 
         if (distanceToPlayer <= boss.GetBossHealth().DetectionRange)
         {
+            // Play the start animation
+            animator.SetTrigger("StartBossFight");
             boss.SwitchState(boss.phase1State); // Switch to phase 1 (attack state) when player is detected
         }
     }

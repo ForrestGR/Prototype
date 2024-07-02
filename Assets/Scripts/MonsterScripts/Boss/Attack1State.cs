@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; // Für die Navigation
+using UnityEngine.AI;
 
 public class Attack1State : BossBaseState
 {
@@ -10,19 +8,20 @@ public class Attack1State : BossBaseState
     private NavMeshAgent navMeshAgent;
     private Transform player;
 
-    [SerializeField] private float attackRange = 10.0f; // Reichweite des Angriffs
+    [SerializeField] private float attackRange = 10.0f;
     private bool isAttacking = false;
 
     [SerializeField] private int attackDamage = 10;
+    [SerializeField] private float attackDuration = 1.0f; // Dauer der Angriffsanimation
+    [SerializeField] private float attackHitTime = 0.5f; // Zeitpunkt des Treffers während der Animation
 
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Entering Attack 1 State");
         animator = boss.GetComponent<Animator>();
         navMeshAgent = boss.GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Annahme: Der Spieler hat das Tag "Player"
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        // Setze das Ziel auf den Spieler
         navMeshAgent.SetDestination(player.position);
 
         animator.SetTrigger("Walk");
@@ -38,49 +37,52 @@ public class Attack1State : BossBaseState
 
         if (distanceToPlayer <= attackRange)
         {
-            // Stoppt die Bewegung und startet den Angriff
-            Debug.Log("Attack1 wird ausgeführt"); // Debug-Ausgabe
             navMeshAgent.isStopped = true;
             animator.SetTrigger("Attack1");
             isAttacking = true;
+            boss.StartCoroutine(PerformAttack(boss));
         }
+    }
+
+    private IEnumerator PerformAttack(BossStateManager boss)
+    {
+        yield return new WaitForSeconds(attackHitTime);
+        OnAttackHit(boss);
+
+        yield return new WaitForSeconds(attackDuration - attackHitTime);
+        OnAttackComplete(boss);
     }
 
     public void OnAttackHit(BossStateManager boss)
     {
-        // Diese Methode wird von der Animations-Event aufgerufen, wenn der Treffer erfolgt
         float distanceToPlayer = Vector3.Distance(boss.transform.position, player.position);
-        Debug.Log("OnAttackHit called, distance to player: " + distanceToPlayer); // Debug-Ausgabe
+        Debug.Log("OnAttackHit called, distance to player: " + distanceToPlayer);
 
         if (distanceToPlayer <= attackRange)
         {
-            // Spieler Schaden zufügen (Annahme: Spieler hat ein Script "PlayerHealth")
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(attackDamage); // Beispielhafter Schaden
-                Debug.Log("Player took damage: " + attackDamage); // Debug-Ausgabe
+                playerHealth.TakeDamage(attackDamage);
+                Debug.Log("Player took damage: " + attackDamage);
             }
         }
     }
 
     public override void ExitState(BossStateManager boss)
     {
-        // Setze den NavMeshAgent zurück
         navMeshAgent.isStopped = false;
     }
 
-    // Diese Methode wird von der Animation aufgerufen, um den Angriff zu beenden
     public void OnAttackComplete(BossStateManager boss)
     {
-        Debug.Log("Attack1 complete"); // Debug-Ausgabe
+        Debug.Log("Attack1 complete");
         isAttacking = false;
         boss.SwitchState(boss.phase1State);
     }
 
     private void LookAtPlayer(BossStateManager boss)
     {
-        // Drehung zum Spieler
         Vector3 direction = (player.position - boss.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, lookRotation, Time.deltaTime * 5.0f);

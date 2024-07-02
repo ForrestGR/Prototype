@@ -14,9 +14,6 @@ public class Phase1State : BossBaseState
         Debug.Log("Phase 1 start");
         bossHealth = boss.GetBossHealth();
         animator = boss.GetComponent<Animator>();
-
-        // Play the start animation
-        animator.SetTrigger("StartBossFight");
     }
 
     public override void UpdateState(BossStateManager boss)
@@ -44,15 +41,15 @@ public class Phase1State : BossBaseState
             case 0:
                 boss.SwitchState(boss.attack1State);
                 break;
-            //case 1:
-            //    boss.SwitchState(boss.attack2State);
-            //    break;
-            //case 2:
-            //    boss.SwitchState(boss.idleState);
-            //    break;
-            //case 3:
-            //    boss.SwitchState(boss.moveState);
-            //    break;
+            case 1:
+                boss.SwitchState(boss.attack2State);
+                break;
+            case 2:
+                boss.SwitchState(boss.idleState);
+                break;
+            case 3:
+                boss.SwitchState(boss.moveState);
+                break;
         }
     }
 
