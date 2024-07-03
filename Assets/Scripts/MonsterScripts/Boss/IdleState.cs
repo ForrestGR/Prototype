@@ -7,7 +7,7 @@ public class IdleState : BossBaseState
 {
     private Animator animator;
     private NavMeshAgent navMeshAgent;
-    private float idleDuration = 2.0f;
+    private float idleDuration = 3.0f;
     private float idleTimer;
 
     public override void EnterState(BossStateManager boss)
@@ -32,6 +32,6 @@ public class IdleState : BossBaseState
 
     public override void ExitState(BossStateManager boss)
     {
-        Debug.Log("Exiting Idle State");
+        animator.SetTrigger("Phase1");
     }
 }

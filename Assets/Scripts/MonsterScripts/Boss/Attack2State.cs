@@ -8,7 +8,7 @@ public class Attack2State : BossBaseState
     private Animator animator;
     private NavMeshAgent navMeshAgent;
 
-    private float idleDuration = 2.0f;
+    private float idleDuration = 5.0f;
     private float idleTimer;
 
     public override void EnterState(BossStateManager boss)
@@ -36,7 +36,7 @@ public class Attack2State : BossBaseState
 
     public override void ExitState(BossStateManager boss)
     {
-
+        animator.SetTrigger("Phase1");
     }
 
 

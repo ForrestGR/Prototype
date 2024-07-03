@@ -69,11 +69,6 @@ public class Attack1State : BossBaseState
         }
     }
 
-    public override void ExitState(BossStateManager boss)
-    {
-        navMeshAgent.isStopped = false;
-        isAttacking = false;
-    }
 
     public void OnAttackComplete(BossStateManager boss)
     {
@@ -87,5 +82,13 @@ public class Attack1State : BossBaseState
         Vector3 direction = (player.position - boss.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, lookRotation, Time.deltaTime * 5.0f);
+    }
+
+
+    public override void ExitState(BossStateManager boss)
+    {
+        navMeshAgent.isStopped = false;
+        isAttacking = false;
+        animator.SetTrigger("Phase1");
     }
 }

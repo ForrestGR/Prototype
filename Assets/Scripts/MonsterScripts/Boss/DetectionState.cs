@@ -29,6 +29,7 @@ public class DetectionState : BossBaseState
 
     public override void ExitState(BossStateManager boss)
     {
-        //throw new System.NotImplementedException();
+        Debug.Log("exiting state detecttion");
+        animator.SetTrigger("Phase1");
     }
 }
