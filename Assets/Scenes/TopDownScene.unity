@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 109792144}
   - component: {fileID: 109792142}
   - component: {fileID: 109792145}
+  - component: {fileID: 109792158}
   - component: {fileID: 109792152}
   - component: {fileID: 109792146}
   - component: {fileID: 109792148}
@@ -681,6 +682,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5dd3df60bccea04a98e1c78720631fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &109792158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109792139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adeedca5b68b48944afe38ef5653776a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healAmount: 10
 --- !u!1 &151040087 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 19588385245968726, guid: 7495e0264b70aaa44bb0cefb2a54d015, type: 3}

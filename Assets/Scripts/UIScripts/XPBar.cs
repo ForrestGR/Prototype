@@ -20,7 +20,7 @@ public class XPBar : MonoBehaviour
         }
     }
 
-    private void UpdateXPBar(int currentXP, int xpToNextLevel)
+    private void UpdateXPBar(float currentXP, float xpToNextLevel)
     {
         if (playerXP != null)
         {

@@ -19,11 +19,13 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    private void UpdateHealthbar(int currentHealth, int maxHealth)
+    private void UpdateHealthbar(float currentHealth, float maxHealth)
     {
         if (healthbar != null)
         {
-            healthbar.value = (float)currentHealth / maxHealth;
+            healthbar.value = currentHealth / maxHealth;
         }
     }
 }
+
+

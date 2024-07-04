@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currentHealth;
-    [SerializeField] private int currentLevel = 1;
-    [SerializeField] private int currentXP = 0;
-    [SerializeField] private int xpToNextLevel = 100;
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float currentHealth;
+    [SerializeField] private float currentLevel = 1;
+    [SerializeField] private float currentXP = 0;
+    [SerializeField] private float xpToNextLevel = 100;
     [SerializeField] private GameOverManager gameOverManager;
 
     // Events
-    public event Action<int, int> OnHealthChanged;
-    public event Action<int, int> OnXPChanged;
+    public event Action<float, float> OnHealthChanged;
+    public event Action<float, float> OnXPChanged;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
         OnXPChanged?.Invoke(currentXP, xpToNextLevel);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
@@ -49,17 +49,17 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public int GetCurrentHealth()
+    public float GetCurrentHealth()
     {
         return currentHealth;
     }
 
-    public int GetMaxHealth()
+    public float GetMaxHealth()
     {
         return maxHealth;
     }
 
-    public void GainXP(int amount)
+    public void GainXP(float amount)
     {
         currentXP += amount;
         OnXPChanged?.Invoke(currentXP, xpToNextLevel);
@@ -69,12 +69,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public int GetCurrentXP()
+    public float GetCurrentXP()
     {
         return currentXP;
     }
 
-    public int GetXPToNextLevel()
+    public float GetXPToNextLevel()
     {
         return xpToNextLevel;
     }
@@ -90,7 +90,7 @@ public class PlayerHealth : MonoBehaviour
         //Debug.Log("Level Up! Current Level: " + currentLevel);
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         currentHealth += amount;
         if (currentHealth > maxHealth)
@@ -101,7 +101,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // Methode, die den aktuellen und maximalen Gesundheitswert zurückgibt
-    public (int, int) GetHealthStatus()
+    public (float, float) GetHealthStatus()
     {
         return (currentHealth, maxHealth);
     }
